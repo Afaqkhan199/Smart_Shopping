@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
+import 'package:provider/provider.dart';
 
 class CustomerHome extends StatelessWidget {
   static const String id = 'customer_home';
@@ -47,8 +49,8 @@ class CustomerHome extends StatelessWidget {
               ListTile(
                 title: Text('Logout'),
                 onTap: () {
-                  // Navigator.pop(context);
-                  Navigator.pushNamed(context, CustomerHome.id);
+                  context.read<AuthService>().signOut();
+
                 },
               ),
             ],

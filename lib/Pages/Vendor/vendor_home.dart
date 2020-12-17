@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
-import 'file:///D:/Study_Material/CUI-FA17-BSE-ISL/FYP-Smart_Shopping/fyp_smart_shopping/lib/Pages/Vendor/Settings/vendor_settings.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 
 class VendorHome extends StatelessWidget {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/google_path.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/or_formatting.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/vendor_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
+import 'package:provider/provider.dart';
 
 enum Users { Customer, Vendor }
 
@@ -16,6 +18,9 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   Users _user = Users.Customer;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +40,7 @@ class _LoginState extends State<Login> {
               height: 48.0,
             ),
             TextField(
+              controller: emailController,
               onChanged: (value) {
                 //Get user's input
               },
@@ -44,6 +50,7 @@ class _LoginState extends State<Login> {
               height: 15.0,
             ),
             TextField(
+              controller: passwordController,
               obscureText: true,
               onChanged: (value) {
                 //Get user's input
@@ -81,9 +88,9 @@ class _LoginState extends State<Login> {
             RoundButton(
               title: 'Log In',
               onPressed: () {
-                _user == Users.Vendor
-                    ? Navigator.pushNamed(context, VendorHome.id)
-                    : Navigator.pushNamed(context, CustomerHome.id);
+                context
+                    .read<AuthService>()
+                    .signIn(emailController.text, passwordController.text);
               },
             ),
             ORWord(),
