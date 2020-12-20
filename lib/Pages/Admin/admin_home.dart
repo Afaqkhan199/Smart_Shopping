@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
+import 'package:provider/provider.dart';
 
 class AdminHome extends StatelessWidget {
   static const String id = 'admin_home';
@@ -56,7 +58,9 @@ class AdminHome extends StatelessWidget {
                 title: Text('Logout'),
                 onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, AdminHome.id);
+                  context
+                      .read<AuthService>().signOut();
+
                 },
               ),
             ],

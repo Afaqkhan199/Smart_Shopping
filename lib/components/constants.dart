@@ -18,5 +18,12 @@ const kTextFieldDecoration = InputDecoration(
   ),
 );
 
-const kAppBarTitleTextStyle =
-    TextStyle(fontSize: 25, fontWeight: FontWeight.w600, letterSpacing: 2.0);
+const kAppBarTitleTextStyle = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.w600,
+  letterSpacing: 2.0,
+);
+const kFormTextStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);

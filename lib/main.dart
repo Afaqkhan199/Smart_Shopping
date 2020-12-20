@@ -63,9 +63,9 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseuser = context.watch<User>();
 
     if (firebaseuser!=null) {
-      if(ModalRoute.of(context).settings.name != CustomerHome.id)
-      Navigator.pushNamed(context, CustomerHome.id);
-      return CustomerHome();
+      //if(ModalRoute.of(context).settings.name != VendorHome.id)
+      //Navigator.pushNamed(context, VendorHome.id);
+      return VendorHome();
     }
     return Welcome();
   }

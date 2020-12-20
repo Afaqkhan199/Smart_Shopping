@@ -91,6 +91,10 @@ class _LoginState extends State<Login> {
                 context
                     .read<AuthService>()
                     .signIn(emailController.text, passwordController.text);
+                if(_user == Users.Vendor)
+                Navigator.pushNamed(context, VendorHome.id);
+                if(_user == Users.Customer)
+                  Navigator.pushNamed(context, CustomerHome.id);
               },
             ),
             ORWord(),

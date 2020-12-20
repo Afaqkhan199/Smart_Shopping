@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
+import 'package:fyp_smart_shopping/components/text_box.dart';
 
 class ChangeDescription extends StatelessWidget {
   static const String id = 'change_description';
@@ -30,24 +31,7 @@ class ChangeDescription extends StatelessWidget {
             SizedBox(
               height: 120,
             ),
-            TextField(
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                hintText: 'Type a new one',
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 20.0,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.deepOrangeAccent, width: 1.0),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.deepOrangeAccent, width: 2.0),
-                ),
-              ),
-            ),
+            TextBox(hnt: 'Type a new one'),
             RoundButton(
               title: 'Save',
               onPressed: () {
