@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +16,24 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPassword = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Users _user = Users.Customer;
+
+
+  addData(){
+    Map<String,dynamic> productData = {"email" : emailController.text,
+      "type" : _user.toString(),
+      "name" : nameController.text
+    };
+
+    CollectionReference collectionReference = Firestore.instance.collection('users');
+    collectionReference.add(productData);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +53,7 @@ class _RegisterState extends State<Register> {
               height: 40,
             ),
             TextField(
+              controller: nameController,
               onChanged: (value) {
                 //Get user's input
               },
@@ -89,6 +104,7 @@ class _RegisterState extends State<Register> {
                     setState(
                       () {
                         _user = value;
+                        print(_user);
                       },
                     );
                   },
@@ -101,6 +117,7 @@ class _RegisterState extends State<Register> {
                     setState(
                       () {
                         _user = value;
+                        print(_user);
                       },
                     );
                   },
@@ -116,6 +133,7 @@ class _RegisterState extends State<Register> {
                     print("Register pressed");
                     await _auth.createUserWithEmailAndPassword(
                         email: emailController.text, password: passwordController.text);
+                    addData();
                     print("Signed Up");
                   } on FirebaseAuthException catch (e) {
                     return e.message;
