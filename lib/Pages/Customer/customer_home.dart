@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/product.dart';
+import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
+import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
+import 'package:provider/provider.dart';
 
 var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
@@ -27,12 +31,14 @@ Widget getPrducts() {
 }
 
 class CustomerHome extends StatefulWidget {
+
   static const String id = 'customer_home';
   @override
   _CustomerHomeState createState() => _CustomerHomeState();
 }
 
 class _CustomerHomeState extends State<CustomerHome> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   Widget myColumn = Column(
     children: [
       Text(
@@ -85,9 +91,9 @@ class _CustomerHomeState extends State<CustomerHome> {
               ),
               ListTile(
                 title: Text('Logout'),
-                onTap: () {
-                  // Navigator.pop(context);
-                  Navigator.pushNamed(context, CustomerHome.id);
+                onTap: () async{
+                  await _auth.signOut();
+                  Navigator.pushNamed(context, Welcome.id);
                 },
               ),
             ],

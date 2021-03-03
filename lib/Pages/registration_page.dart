@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
@@ -14,6 +15,10 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPassword = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   Users _user = Users.Customer;
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,7 @@ class _RegisterState extends State<Register> {
               height: 10.0,
             ),
             TextField(
+              controller: emailController,
               onChanged: (value) {
                 //Get user's input
               },
@@ -52,6 +58,7 @@ class _RegisterState extends State<Register> {
               height: 10.0,
             ),
             TextField(
+              controller: passwordController,
               obscureText: true,
               onChanged: (value) {
                 //Get user's input
@@ -62,6 +69,7 @@ class _RegisterState extends State<Register> {
               height: 10.0,
             ),
             TextField(
+              controller: confirmPassword,
               obscureText: true,
               onChanged: (value) {
                 //Get user's input
@@ -100,10 +108,19 @@ class _RegisterState extends State<Register> {
                 const Text('Vendor'),
               ],
             ),
-            RoundButton(
+            RoundButton (
               title: 'Register',
-              onPressed: () {
-                print(_user);
+              onPressed: () async {
+                if(passwordController.text == confirmPassword.text){
+                  try {
+                    print("Register pressed");
+                    await _auth.createUserWithEmailAndPassword(
+                        email: emailController.text, password: passwordController.text);
+                    print("Signed Up");
+                  } on FirebaseAuthException catch (e) {
+                    return e.message;
+                  }
+                }
               },
             ),
             ORWord(),

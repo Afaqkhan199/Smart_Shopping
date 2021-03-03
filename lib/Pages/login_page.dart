@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -7,6 +8,7 @@ import 'package:fyp_smart_shopping/components/or_formatting.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/vendor_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:provider/provider.dart';
+import 'package:fyp_smart_shopping/Services/auth.dart';
 
 enum Users { Customer, Vendor }
 
@@ -17,6 +19,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   Users _user = Users.Customer;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -87,14 +90,26 @@ class _LoginState extends State<Login> {
             ),
             RoundButton(
               title: 'Log In',
-              onPressed: () {
-                context
-                    .read<AuthService>()
-                    .signIn(emailController.text, passwordController.text);
-                if(_user == Users.Vendor)
-                Navigator.pushNamed(context, VendorHome.id);
-                if(_user == Users.Customer)
+              onPressed: () async{
+                try {
+                  final user = await _auth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+                  if(user!=null && _user == Users.Vendor)
+                    Navigator.pushNamed(context, VendorHome.id);
+                  if(user!=null && _user == Users.Customer)
                   Navigator.pushNamed(context, CustomerHome.id);
+                } on FirebaseAuthException catch (e) {
+                  return e.message;
+                }
+
+
+
+                //context
+                //    .read<AuthService>()
+                //    .signIn(emailController.text, passwordController.text);
+                //if(_user == Users.Vendor)
+                //Navigator.pushNamed(context, VendorHome.id);
+                //if(_user == Users.Customer)
+                  //Navigator.pushNamed(context, CustomerHome.id);
               },
             ),
             ORWord(),
