@@ -87,7 +87,9 @@ class VendorHome extends StatelessWidget {
           ),
           bottom: TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.autorenew)),
+              Tab(
+                icon: Icon(Icons.autorenew),
+              ),
               Tab(icon: Icon(Icons.check_circle)),
               Tab(icon: Icon(Icons.directions_bike)),
             ],
@@ -98,11 +100,22 @@ class VendorHome extends StatelessWidget {
           child: TabBarView(
             children: <ListView>[
               ListView(
-                children: <Text>[
-                  Text('Vendor here'),
-                  Text('Pending Orders'),
-                  Text('Row 1'),
-                  Text('Row 2'),
+                children: <Widget>[
+                  // Text('Vendor here'),
+                  // Text('Pending Orders'),
+                  // Text('Row 1'),
+                  // Text('Row 2'),
+                  Text(
+                    'Order Id: 32524',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Image(
+                    image: AssetImage('images/order.jpg'),
+                  ),
                 ],
               ),
               ListView(
