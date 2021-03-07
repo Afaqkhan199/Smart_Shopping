@@ -4,6 +4,7 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
+import 'package:fyp_smart_shopping/components/text_area.dart';
 import 'dart:io';
 
 class VendorAddCard extends StatefulWidget {
@@ -54,7 +55,7 @@ class _VendorAddProductState extends State<VendorAddCard> {
             SizedBox(
               height: 10,
             ),
-            TextBox(hnt: 'Description of the product'),
+            TextArea(hnt: 'Description of the product'),
             SizedBox(
               height: 15,
             ),
