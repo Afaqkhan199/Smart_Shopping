@@ -54,7 +54,7 @@ class _VendorProductsState extends State<VendorProducts> {
                     onChanged: (String newValue) {
                       setState(
                         () {
-                          // this._selectedCategory = newValue;
+                          _selectedCategory = newValue;
                         },
                       );
                     },
@@ -69,7 +69,6 @@ class _VendorProductsState extends State<VendorProducts> {
                   child: RoundButton(
                     title: 'Show',
                     onPressed: () {
-                      Navigator.pushNamed(context, VendorAddCard.id);
                       //Check  category, show products
                     },
                   ),
@@ -82,7 +81,14 @@ class _VendorProductsState extends State<VendorProducts> {
                   child: RoundButton(
                     title: 'Add',
                     onPressed: () {
-                      Navigator.pushNamed(context, VendorAddCharger.id);
+                      if (_selectedCategory == 'LED')
+                        Navigator.pushNamed(context, VendorAddLed.id);
+                      else if (_selectedCategory == 'Graphic Card')
+                        Navigator.pushNamed(context, VendorAddCard.id);
+                      else if (_selectedCategory == 'Charger')
+                        Navigator.pushNamed(context, VendorAddCharger.id);
+                      else
+                        print(_selectedCategory);
                       //Check category, show respective interface
                     },
                   ),
