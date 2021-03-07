@@ -104,15 +104,15 @@ class _VendorProductsState extends State<VendorProducts> {
             SizedBox(
               height: 16,
             ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                  color: Colors.deepOrangeAccent,
-                ),
-                child: ProductsListView(),
-              ),
-            ),
+            // Expanded(
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(horizontal: 20),
+            //     decoration: BoxDecoration(
+            //       color: Colors.deepOrangeAccent,
+            //     ),
+            //     // child: ProductsListView(),
+            //   ),
+            // ),
           ],
         ),
       ),
