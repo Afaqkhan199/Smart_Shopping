@@ -91,7 +91,7 @@ class _LoginState extends State<Login> {
               title: 'Log In',
               onPressed: () async {
                 try {
-                  final user = await _auth.signInWithEmailAndPassword(
+                   final user = await _auth.signInWithEmailAndPassword(
                       email: emailController.text,
                       password: passwordController.text);
                   if (user != null && _user == Users.Vendor)

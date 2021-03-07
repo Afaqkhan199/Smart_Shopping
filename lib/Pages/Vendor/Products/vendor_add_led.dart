@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -23,6 +26,32 @@ class _VendorAddProductState extends State<VendorAddLed> {
     });
   }
 
+  final _auth = FirebaseAuth.instance;
+  String userEmail;
+  String getCurrentUserEmail()  {
+    return userEmail = _auth.currentUser.email;
+  }
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController typeController = TextEditingController();
+  final TextEditingController companyController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
+
+  addData(){
+    Map<String,dynamic> productData = {"title" : nameController.text,
+      "description" : descriptionController.text,
+      "size" : _SizeSelectedCategory,
+      "resolution" : _ResSelectedCategory,
+      "android" : _android.toString(),
+      "price" : priceController.text,
+      "vendorEmail" : getCurrentUserEmail()
+    };
+
+    CollectionReference collectionReference = Firestore.instance.collection('products');
+    collectionReference.add(productData);
+  }
+
   String newProductCategory;
   @override
   Widget build(BuildContext context) {
@@ -45,7 +74,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
             SizedBox(
               height: 10,
             ),
-            TextBox(hnt: 'Enter product name'),
+            TextBox(hnt: 'Enter product name', textController: nameController),
             SizedBox(
               height: 15,
             ),
@@ -56,7 +85,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
             SizedBox(
               height: 10,
             ),
-            TextArea(hnt: 'Description of the product'),
+            TextArea(hnt: 'Description of the product', textController: descriptionController),
             SizedBox(
               height: 15,
             ),
@@ -192,7 +221,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: TextBox(hnt: 'Price per item'),
+                  child: TextBox(hnt: 'Price per item', textController: priceController),
                 ),
                 SizedBox(
                   width: 20,
@@ -233,6 +262,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
               title: 'Save',
               onPressed: () {
                 print('Save data to firebase');
+                addData();
               },
             ),
           ],

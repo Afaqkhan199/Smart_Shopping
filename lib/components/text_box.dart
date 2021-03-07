@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TextBox extends StatelessWidget {
-  TextBox({this.hnt});
+
+  TextBox({this.hnt, this.textController});
+
+  final TextEditingController textController;
   final String hnt;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: textController,
       textAlign: TextAlign.center,
       decoration: InputDecoration(
         hintText: hnt,

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TextArea extends StatelessWidget {
-  TextArea({this.hnt});
+  TextArea({this.hnt,this.textController});
   final String hnt;
+  final TextEditingController textController;
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: textController,
       maxLines: null,
       keyboardType: TextInputType.multiline,
       textAlign: TextAlign.center,
