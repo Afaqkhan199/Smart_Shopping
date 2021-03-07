@@ -28,7 +28,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
 
   final _auth = FirebaseAuth.instance;
   String userEmail;
-  String getCurrentUserEmail()  {
+  String getCurrentUserEmail() {
     return userEmail = _auth.currentUser.email;
   }
 
@@ -38,17 +38,19 @@ class _VendorAddProductState extends State<VendorAddLed> {
   final TextEditingController companyController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
 
-  addData(){
-    Map<String,dynamic> productData = {"title" : nameController.text,
-      "description" : descriptionController.text,
-      "size" : _SizeSelectedCategory,
-      "resolution" : _ResSelectedCategory,
-      "android" : _android.toString(),
-      "price" : priceController.text,
-      "vendorEmail" : getCurrentUserEmail()
+  addData() {
+    Map<String, dynamic> productData = {
+      "title": nameController.text,
+      "description": descriptionController.text,
+      "size": _SizeSelectedCategory,
+      "resolution": _ResSelectedCategory,
+      "android": _android.toString(),
+      "price": priceController.text,
+      "vendorEmail": getCurrentUserEmail()
     };
 
-    CollectionReference collectionReference = Firestore.instance.collection('products');
+    CollectionReference collectionReference =
+        Firestore.instance.collection('products');
     collectionReference.add(productData);
   }
 
@@ -85,7 +87,9 @@ class _VendorAddProductState extends State<VendorAddLed> {
             SizedBox(
               height: 10,
             ),
-            TextArea(hnt: 'Description of the product', textController: descriptionController),
+            TextArea(
+                hnt: 'Description of the product',
+                textController: descriptionController),
             SizedBox(
               height: 15,
             ),
@@ -126,7 +130,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
                     onChanged: (String newValue) {
                       setState(
                         () {
-                          // this._SizeSelectedCategory = newValue;
+                          _SizeSelectedCategory = newValue;
                         },
                       );
                     },
@@ -156,7 +160,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
                     onChanged: (String newValue) {
                       setState(
                         () {
-                          // this._ResSelectedCategory = newValue;
+                          _ResSelectedCategory = newValue;
                         },
                       );
                     },
@@ -221,7 +225,8 @@ class _VendorAddProductState extends State<VendorAddLed> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: TextBox(hnt: 'Price per item', textController: priceController),
+                  child: TextBox(
+                      hnt: 'Price per item', textController: priceController),
                 ),
                 SizedBox(
                   width: 20,

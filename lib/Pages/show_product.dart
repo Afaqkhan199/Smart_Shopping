@@ -1,28 +1,37 @@
 import 'package:flutter/material.dart';
 
-class Product {
-  String _name, _description, _price, _quantity;
-  Product(this._name, this._description, this._price, this._quantity);
+class showProduct {
+  String _name, _price;
+  showProduct(this._name, this._price);
+
+  String getName() {
+    return _name;
+  }
+
+  String getPrice() {
+    return _price;
+  }
 }
 
 class ShowProduct extends StatelessWidget {
   ShowProduct({this.product});
-  final Product product;
+  final showProduct product;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
         Expanded(
           child: Image(
-            image: AssetImage('images/Logo.png'),
+            //product.getImage(),
+            image: AssetImage('images/card.JPG'),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(30, 0, 90, 10),
+        Expanded(
           child: Column(
             children: <Widget>[
               Text(
-                product._name,
+                //product.getName(),
+                'Graphic Card',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
@@ -30,7 +39,7 @@ class ShowProduct extends StatelessWidget {
                 ),
               ),
               Text(
-                '   ' + product._price,
+                '   ' + product.getPrice(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,

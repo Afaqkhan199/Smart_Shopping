@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fyp_smart_shopping/Pages/product.dart';
+import 'package:fyp_smart_shopping/Pages/show_product.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -9,22 +9,22 @@ import 'package:fyp_smart_shopping/components/text_box.dart';
 
 var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
-Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
-Product p2 = Product('Mandy', 'T shirt Description', '2500', '20');
-Product p3 = Product('Nandy', 'T shirt Description', '3500', '25');
+// Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
+// Product p2 = Product('Mandy', 'T shirt Description', '2500', '20');
+// Product p3 = Product('Nandy', 'T shirt Description', '3500', '25');
 
 Widget getPrducts() {
   return Column(
     children: [
       ShowProduct(
-        product: p1,
-      ),
+          // product: p1,
+          ),
       ShowProduct(
-        product: p2,
-      ),
+          // product: p2,
+          ),
       ShowProduct(
-        product: p3,
-      ),
+          // product: p3,
+          ),
     ],
   );
 }
