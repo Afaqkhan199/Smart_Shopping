@@ -6,7 +6,6 @@ import 'package:fyp_smart_shopping/Pages/Admin/admin_login.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/change_description.dart';
-import 'package:fyp_smart_shopping/Pages/Vendor/Settings/profile.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_change_password.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_rename.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
@@ -16,7 +15,9 @@ import 'package:fyp_smart_shopping/Pages/registration_page.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_product.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
-import 'package:provider/provider.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_charger.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_led.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_card.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,8 +43,10 @@ class SmartShopping extends StatelessWidget {
         ChangeDescription.id: (context) => ChangeDescription(),
         VendorChangePassword.id: (context) => VendorChangePassword(),
         VendorProducts.id: (context) => VendorProducts(),
-        VendorAddProduct.id: (context) => VendorAddProduct(),
-        MyProfile.id: (context) => MyProfile(),
+        // VendorAddProduct.id: (context) => VendorAddProduct(),
+        VendorAddLed.id: (context) => VendorAddLed(),
+        VendorAddCard.id: (context) => VendorAddCard(),
+        VendorAddCharger.id: (context) => VendorAddCharger(),
       },
     );
   }

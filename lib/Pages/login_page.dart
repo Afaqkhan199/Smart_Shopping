@@ -7,7 +7,6 @@ import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/or_formatting.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/vendor_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
-import 'package:provider/provider.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 
 enum Users { Customer, Vendor }
@@ -90,18 +89,18 @@ class _LoginState extends State<Login> {
             ),
             RoundButton(
               title: 'Log In',
-              onPressed: () async{
+              onPressed: () async {
                 try {
-                  final user = await _auth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-                  if(user!=null && _user == Users.Vendor)
+                  final user = await _auth.signInWithEmailAndPassword(
+                      email: emailController.text,
+                      password: passwordController.text);
+                  if (user != null && _user == Users.Vendor)
                     Navigator.pushNamed(context, VendorHome.id);
-                  if(user!=null && _user == Users.Customer)
-                  Navigator.pushNamed(context, CustomerHome.id);
+                  if (user != null && _user == Users.Customer)
+                    Navigator.pushNamed(context, CustomerHome.id);
                 } on FirebaseAuthException catch (e) {
                   return e.message;
                 }
-
-
 
                 //context
                 //    .read<AuthService>()
@@ -109,7 +108,7 @@ class _LoginState extends State<Login> {
                 //if(_user == Users.Vendor)
                 //Navigator.pushNamed(context, VendorHome.id);
                 //if(_user == Users.Customer)
-                  //Navigator.pushNamed(context, CustomerHome.id);
+                //Navigator.pushNamed(context, CustomerHome.id);
               },
             ),
             ORWord(),

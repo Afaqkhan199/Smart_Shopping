@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
-import 'package:fyp_smart_shopping/Pages/Vendor/Settings/profile.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
-import 'package:provider/provider.dart';
 
 class VendorHome extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -45,8 +43,8 @@ class VendorHome extends StatelessWidget {
                 onTap: () {
                   // Navigator.pop(context);
                   //Navigator.pushNamed(context, VendorProducts.id);
-                  Navigator.of(context).pushNamedAndRemoveUntil(VendorProducts.id, (Route<dynamic> route) => false);
-
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      VendorProducts.id, (Route<dynamic> route) => false);
                 },
               ),
               ListTile(
@@ -68,15 +66,15 @@ class VendorHome extends StatelessWidget {
                 title: Text('Settings'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, MyProfile.id);
+                  Navigator.pushNamed(context, VendorSettings.id);
                 },
               ),
               ListTile(
                 title: Text('Logout'),
-                onTap: () async{
+                onTap: () async {
                   await _auth.signOut();
                   Navigator.pushNamed(context, Welcome.id);
-                  },
+                },
               ),
             ],
           ),

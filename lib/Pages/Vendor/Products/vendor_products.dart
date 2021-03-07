@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_card.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_led.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
-import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_product.dart';
-import 'package:fyp_smart_shopping/Pages/product.dart';
-
-var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
-
-Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
-Product p2 = Product('Mandy', 'T shirt Description', '2500', '20');
-Product p3 = Product('Nandy', 'T shirt Description', '3500', '25');
-
-// List<Product> products = [p1, p2, p3];
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_charger.dart';
+import 'package:fyp_smart_shopping/Widgets/product_listview.dart';
 
 class VendorProducts extends StatefulWidget {
-  static const String id = 'vendor_products';
-  List<String> getCategories() {
+  getCategories() {
     return _categories;
   }
 
+  static const String id = 'vendor_products';
   @override
   _VendorProductsState createState() => _VendorProductsState();
 }
 
 class _VendorProductsState extends State<VendorProducts> {
-  var _selectedCategory = 'All';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,50 +26,15 @@ class _VendorProductsState extends State<VendorProducts> {
           'Products',
           style: kAppBarTitleTextStyle,
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 35.0,
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, VendorAddProduct.id);
-            },
-          ),
-        ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-        child: ListView(
+        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 24),
+        child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
                 Expanded(
                   flex: 2,
-                  child: TextField(
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                      hintText: 'Product Name',
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical: 10.0,
-                        horizontal: 20.0,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors.deepOrangeAccent, width: 1.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors.deepOrangeAccent, width: 2.0),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Expanded(
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
                     iconEnabledColor: Colors.deepOrangeAccent,
@@ -94,23 +52,25 @@ class _VendorProductsState extends State<VendorProducts> {
                       );
                     }).toList(),
                     onChanged: (String newValue) {
-                      setState(() {
-                        this._selectedCategory = newValue;
-                      });
+                      setState(
+                        () {
+                          // this._selectedCategory = newValue;
+                        },
+                      );
                     },
                     value: _selectedCategory,
                   ),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
+                SizedBox(
+                  width: 5,
+                ),
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: RoundButton(
-                    title: 'Search',
+                    title: 'Show',
                     onPressed: () {
-                      print('Search a specific product');
+                      Navigator.pushNamed(context, VendorAddCard.id);
+                      //Check  category, show products
                     },
                   ),
                 ),
@@ -120,9 +80,10 @@ class _VendorProductsState extends State<VendorProducts> {
                 Expanded(
                   flex: 1,
                   child: RoundButton(
-                    title: 'Add Category',
+                    title: 'Add',
                     onPressed: () {
-                      print('Add category triggers');
+                      Navigator.pushNamed(context, VendorAddCharger.id);
+                      //Check category, show respective interface
                     },
                   ),
                 ),
@@ -137,23 +98,14 @@ class _VendorProductsState extends State<VendorProducts> {
             SizedBox(
               height: 16,
             ),
-            ShowProduct(
-              product: p1,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ShowProduct(
-              product: p2,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ShowProduct(
-              product: p3,
-            ),
-            SizedBox(
-              height: 10,
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  color: Colors.deepOrangeAccent,
+                ),
+                child: ProductsListView(),
+              ),
             ),
           ],
         ),
@@ -161,3 +113,6 @@ class _VendorProductsState extends State<VendorProducts> {
     );
   }
 }
+
+var _categories = ['All', 'LED', 'Graphic Card', 'Charger'];
+var _selectedCategory = 'All';
