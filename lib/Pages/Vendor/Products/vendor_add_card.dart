@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -29,13 +30,20 @@ class _VendorAddProductState extends State<VendorAddCard> {
   final TextEditingController ramController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
 
+  final _auth = FirebaseAuth.instance;
+  String userEmail;
+  String getCurrentUserEmail()  {
+    return userEmail = _auth.currentUser.email;
+  }
+
   addData(){
     Map<String,dynamic> productData = {"title" : nameController.text,
       "description" : descriptionController.text,
       "model" : _TypeSelectedCategory,
       "ram" : _RamSelectedCategory,
       "price" : priceController.text,
-      "category" : "Graphics Card"
+      "category" : "Graphics Card",
+      "vendorEmail" : getCurrentUserEmail()
     };
 
     CollectionReference collectionReference = Firestore.instance.collection('products');
