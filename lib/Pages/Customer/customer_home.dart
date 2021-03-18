@@ -7,8 +7,10 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
-
-var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
+import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
+// var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
 // Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
 // Product p2 = Product('Mandy', 'T shirt Description', '2500', '20');
@@ -46,7 +48,7 @@ class _CustomerHomeState extends State<CustomerHome> {
       ),
     ],
   );
-  var _selectedCategory = 'All';
+  // var _selectedCategory = 'All';
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -101,27 +103,28 @@ class _CustomerHomeState extends State<CustomerHome> {
         appBar: AppBar(
           backgroundColor: Colors.deepOrangeAccent,
           title: Text(
-            'Smart Shopping',
+            'List&Filtered Search',
             style: kAppBarTitleTextStyle,
           ),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+              ),
+              onPressed: () {
+                print("Shopping Cart");
+              },
+            ),
+          ],
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-          child: ListView(
+          padding: EdgeInsets.symmetric(vertical: 2, horizontal: 24),
+          child: Column(
             children: <Widget>[
               Row(
                 children: <Widget>[
                   Expanded(
                     flex: 2,
-                    child: TextBox(
-                      hnt: 'Name',
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    flex: 1,
                     child: DropdownButton<String>(
                       dropdownColor: Colors.white,
                       iconEnabledColor: Colors.deepOrangeAccent,
@@ -141,38 +144,31 @@ class _CustomerHomeState extends State<CustomerHome> {
                       onChanged: (String newValue) {
                         setState(
                           () {
-                            this._selectedCategory = newValue;
+                            _selectedCategory = newValue;
                           },
                         );
                       },
                       value: _selectedCategory,
                     ),
                   ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 2,
-                    child: RoundButton(
-                      title: 'Search',
-                      onPressed: () {
-                        setState(() {
-                          myColumn = getPrducts();
-                        });
-                        ;
-                      },
-                    ),
-                  ),
                   SizedBox(
-                    width: 10,
+                    width: 5,
                   ),
                   Expanded(
                     flex: 1,
                     child: RoundButton(
-                      title: 'Add item',
+                      title: 'Add Item',
                       onPressed: () {
-                        print('Add another search bar');
+                        if (_selectedCategory == 'LED')
+                          Navigator.pushNamed(context, CustomerSearchLed.id);
+                        else if (_selectedCategory == 'Graphic Card')
+                          Navigator.pushNamed(context, CustomerSearchCard.id);
+                        else if (_selectedCategory == 'Charger')
+                          Navigator.pushNamed(
+                              context, CustomerSearchCharger.id);
+                        else
+                          print(_selectedCategory);
+                        //Check category, show respective interface
                       },
                     ),
                   ),
@@ -181,13 +177,19 @@ class _CustomerHomeState extends State<CustomerHome> {
               Text(
                 '---------------------------------------------------------------------------------------------',
               ),
+              RoundButton(
+                title: 'Search List',
+                onPressed: () {
+                  print("Search List of items");
+                },
+              ),
               Text(
-                'All Products',
+                'Your list of items',
+                style: kFormTextStyle.copyWith(color: Colors.grey),
               ),
-              SizedBox(
-                height: 16,
+              Text(
+                '---------------------------------------------------------------------------------------------',
               ),
-              myColumn,
             ],
           ),
         ),
@@ -195,3 +197,6 @@ class _CustomerHomeState extends State<CustomerHome> {
     );
   }
 }
+
+var _categories = ['All', 'LED', 'Graphic Card', 'Charger'];
+var _selectedCategory = 'All';

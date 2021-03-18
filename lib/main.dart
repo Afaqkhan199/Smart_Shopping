@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_login.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/change_description.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_change_password.dart';
@@ -17,8 +20,6 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_product.dart
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_led.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_card.dart';
-import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
-
 
 import 'package:fyp_smart_shopping/Services/auth.dart';
 
@@ -50,7 +51,6 @@ class SmartShopping extends StatelessWidget {
         VendorAddLed.id: (context) => VendorAddLed(),
         VendorAddCharger.id: (context) => VendorAddCharger(),
         //VendorAddProduct.id: (context) => VendorAddProduct(),
-        ChatDetailPage.id: (context) => ChatDetailPage()
       },
     );
   }
