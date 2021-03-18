@@ -18,10 +18,10 @@ class VendorAddCharger extends StatefulWidget {
 class _VendorAddProductState extends State<VendorAddCharger> {
   File _img;
   Future productImage() async {
-    var img = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _img = img;
-    });
+    //var img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    //setState(() {
+      //_img = img;
+    //});
   }
 
   final TextEditingController nameController = TextEditingController();
@@ -46,7 +46,7 @@ class _VendorAddProductState extends State<VendorAddCharger> {
       "vendorEmail" : getCurrentUserEmail()
     };
 
-    CollectionReference collectionReference = Firestore.instance.collection('products');
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('products');
     collectionReference.add(productData);
   }
 

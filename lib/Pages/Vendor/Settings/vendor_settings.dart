@@ -11,6 +11,8 @@ class VendorSettings extends StatelessWidget {
   static final description = 'Hey there, this is a dummy description';
   static final location = 'Islamabad';
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

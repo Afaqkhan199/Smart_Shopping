@@ -20,10 +20,10 @@ class _VendorAddProductState extends State<VendorAddLed> {
   File _img;
   Android _android = Android.N;
   Future productImage() async {
-    var img = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _img = img;
-    });
+    //var img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    //setState(() {
+      //_img = img;
+    //});
   }
 
   final _auth = FirebaseAuth.instance;
@@ -50,7 +50,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
     };
 
     CollectionReference collectionReference =
-        Firestore.instance.collection('products');
+        FirebaseFirestore.instance.collection('products');
     collectionReference.add(productData);
   }
 

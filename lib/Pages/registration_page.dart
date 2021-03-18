@@ -30,7 +30,7 @@ class _RegisterState extends State<Register> {
       "name" : nameController.text
     };
 
-    CollectionReference collectionReference = Firestore.instance.collection('users');
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('users');
     collectionReference.add(productData);
   }
 

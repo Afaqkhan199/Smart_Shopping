@@ -6,6 +6,7 @@ import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
+import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 
 var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
@@ -77,7 +78,7 @@ class _CustomerHomeState extends State<CustomerHome> {
                 title: Text('Chat'),
                 onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, CustomerHome.id);
+                  Navigator.pushNamed(context, ChatDetailPage.id);
                 },
               ),
               ListTile(

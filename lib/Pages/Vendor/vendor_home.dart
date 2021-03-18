@@ -6,6 +6,7 @@ import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
+import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 
 class VendorHome extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -51,7 +52,7 @@ class VendorHome extends StatelessWidget {
                 title: Text('Chat'),
                 onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, VendorHome.id);
+                  Navigator.pushNamed(context, ChatDetailPage.id);
                 },
               ),
               ListTile(
