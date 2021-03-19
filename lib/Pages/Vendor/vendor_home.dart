@@ -43,9 +43,9 @@ class VendorHome extends StatelessWidget {
                 title: Text('Products'),
                 onTap: () {
                   // Navigator.pop(context);
-                  //Navigator.pushNamed(context, VendorProducts.id);
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      VendorProducts.id, (Route<dynamic> route) => false);
+                  Navigator.pushNamed(context, VendorProducts.id);
+                  //Navigator.of(context).pushNamedAndRemoveUntil(
+                  //     VendorProducts.id, (Route<dynamic> route) => false);
                 },
               ),
               ListTile(
