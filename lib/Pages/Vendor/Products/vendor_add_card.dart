@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'package:fyp_smart_shopping/components/text_area.dart';
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class VendorAddCard extends StatefulWidget {
   static const String id = 'vendor_add_card';
@@ -16,14 +17,30 @@ class VendorAddCard extends StatefulWidget {
 }
 
 class _VendorAddProductState extends State<VendorAddCard> {
+  FirebaseStorage _storage = FirebaseStorage.instance;
+  String imgURL;
   File _img;
   Future productImage() async {
-    //var img = await ImagePicker.pickImage(source: ImageSource.gallery);
-   // setState(() {
-    //  _img = img;
-   // });
+    var img = await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _img = File(img.path);
+    });
   }
 
+  uploadPic() async {
+
+    //Create a reference to the location you want to upload to in firebase
+    Reference reference = _storage.ref().child("images/${nameController.text}");
+
+    //Upload the file to firebase
+    UploadTask uploadTask = reference.putFile(_img);
+
+    // Waits till the file is uploaded then stores the download url
+    uploadTask.then((res) async{
+      imgURL = await res.ref.getDownloadURL();
+    });
+
+  }
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController modelController = TextEditingController();
@@ -36,14 +53,16 @@ class _VendorAddProductState extends State<VendorAddCard> {
     return userEmail = _auth.currentUser.email;
   }
 
-  addData(){
+  addData() async{
+    await uploadPic();
     Map<String,dynamic> productData = {"title" : nameController.text,
       "description" : descriptionController.text,
       "model" : _TypeSelectedCategory,
       "ram" : _RamSelectedCategory,
       "price" : priceController.text,
       "category" : "Graphics Card",
-      "vendorEmail" : getCurrentUserEmail()
+      "vendorEmail" : getCurrentUserEmail(),
+      "imageURL" : imgURL
     };
 
     CollectionReference collectionReference = FirebaseFirestore.instance.collection('products');

@@ -9,6 +9,7 @@ import 'package:fyp_smart_shopping/components/text_area.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class VendorAddLed extends StatefulWidget {
   static const String id = 'vendor_add_led';
@@ -19,11 +20,30 @@ class VendorAddLed extends StatefulWidget {
 class _VendorAddProductState extends State<VendorAddLed> {
   File _img;
   Android _android = Android.N;
+  FirebaseStorage _storage = FirebaseStorage.instance;
+
+   String imgURL;
+
   Future productImage() async {
-    //var img = await ImagePicker.pickImage(source: ImageSource.gallery);
-    //setState(() {
-      //_img = img;
-    //});
+    var img = await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _img = File(img.path);
+    });
+  }
+
+  Future uploadPic() async {
+
+    //Create a reference to the location you want to upload to in firebase
+    Reference reference = _storage.ref().child("images/${nameController.text}");
+
+    //Upload the file to firebase
+    UploadTask uploadTask = reference.putFile(_img);
+
+    // Waits till the file is uploaded then stores the download url
+    uploadTask.then((res) async{
+       imgURL = await res.ref.getDownloadURL();
+    });
+
   }
 
   final _auth = FirebaseAuth.instance;
@@ -38,7 +58,8 @@ class _VendorAddProductState extends State<VendorAddLed> {
   final TextEditingController companyController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
 
-  addData() {
+  addData()  async{
+    await uploadPic();
     Map<String, dynamic> productData = {
       "title": nameController.text,
       "description": descriptionController.text,
@@ -46,7 +67,8 @@ class _VendorAddProductState extends State<VendorAddLed> {
       "resolution": _ResSelectedCategory,
       "android": _android.toString(),
       "price": priceController.text,
-      "vendorEmail": getCurrentUserEmail()
+      "vendorEmail": getCurrentUserEmail(),
+      "imageURL" : imgURL
     };
 
     CollectionReference collectionReference =
