@@ -17,8 +17,13 @@ class _ProductsListViewState extends State<ProductsListView> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        return ShowProduct(
-          product: products[index],
+        return InkWell(
+          onTap: (){
+            print('Detail page');
+          },
+          child: ShowProduct(
+            product: products[index],
+          ),
         );
       },
       itemCount: products.length,

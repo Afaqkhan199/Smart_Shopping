@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 
 class ProductsListItem extends StatelessWidget {
   final String name;
-  final int currentPrice;
-  final int originalPrice;
-  final int discount;
+  final int price;
   final String imageUrl;
 
   const ProductsListItem(
       {Key key,
       this.name,
-      this.currentPrice,
-      this.originalPrice,
-      this.discount,
+      this.price,
       this.imageUrl})
       : super(key: key);
 
@@ -34,7 +30,7 @@ class ProductsListItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         // Navigator.of(context).pushNamed(Constants.ROUTE_PRODUCT_DETAIL);
-        print('producct details page');
+        print('product details page');
       },
       child: Card(
         elevation: 4.0,
@@ -67,33 +63,9 @@ class ProductsListItem extends StatelessWidget {
                   SizedBox(
                     height: 2.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text(
-                        "\$$currentPrice",
-                        style: TextStyle(fontSize: 16.0, color: Colors.black),
-                      ),
-                      SizedBox(
-                        width: 8.0,
-                      ),
-                      Text(
-                        "\$$originalPrice",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 8.0,
-                      ),
-                      Text(
-                        "$discount\% off",
-                        style: TextStyle(fontSize: 12.0, color: Colors.grey),
-                      ),
-                    ],
+                  Text(
+                    "\$$price",
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
                   ),
                   SizedBox(
                     height: 8.0,
