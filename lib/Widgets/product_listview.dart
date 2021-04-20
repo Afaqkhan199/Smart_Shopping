@@ -8,9 +8,9 @@ class ProductsListView extends StatefulWidget {
 
 class _ProductsListViewState extends State<ProductsListView> {
   List<showProduct> products = [
-    showProduct('Led', '20000'),
-    showProduct('Charger', '500'),
-    showProduct('Graphic card', '50000'),
+    // showProduct('Led', '20000'),
+    // showProduct('Charger', '500'),
+    // showProduct('Graphic card', '50000'),
   ];
 
   @override

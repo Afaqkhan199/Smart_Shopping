@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class showProduct {
-  String _name, _price;
-  showProduct(this._name, this._price);
+  String _name, _price, _url;
+  showProduct(this._name, this._price, this._url);
 
   String getName() {
     return _name;
@@ -10,6 +10,10 @@ class showProduct {
 
   String getPrice() {
     return _price;
+  }
+
+  String getUrl(){
+    return _url;
   }
 }
 
