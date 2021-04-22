@@ -55,7 +55,8 @@ class _VendorAddProductState extends State<VendorAddCard> {
 
   addData() async{
     await uploadPic();
-    Map<String,dynamic> productData = {"title" : nameController.text,
+    Map<String,dynamic> productData = {
+      "title" : nameController.text,
       "description" : descriptionController.text,
       "model" : _TypeSelectedCategory,
       "ram" : _RamSelectedCategory,
