@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/product_detail_page.dart';
 
 class AllProducts extends StatelessWidget {
   @override
@@ -21,9 +22,18 @@ class AllProducts extends StatelessWidget {
         }
         return new ListView(
         children: snapshot.data.docs.map((DocumentSnapshot document){
-    return new ListTile(
-    title: new Text(document.data()['title']),
-    subtitle: new Text(document.data()['price']),
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailPage(document)),
+        );
+      },
+      child: new ListTile(
+      title: new Text(document.data()['title']),
+      subtitle: new Text(document.data()['price']),
+      ),
     );
     }).toList(),
     );

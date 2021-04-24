@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/product_detail_page.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/change_description.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_change_password.dart';
@@ -56,6 +58,7 @@ class SmartShopping extends StatelessWidget {
         CustomerSearchLed.id: (context) => CustomerSearchLed(),
         CustomerSearchCharger.id: (context) => CustomerSearchCharger(),
         CustomerSearchCard.id: (context) => CustomerSearchCard(),
+        // ProductDetailPage.id: (context) => ProductDetailPage(DocumentSnapshot doc),
       },
     );
   }
