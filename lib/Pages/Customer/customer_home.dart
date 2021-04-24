@@ -10,6 +10,7 @@ import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
 // var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
 // Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
@@ -87,7 +88,7 @@ class _CustomerHomeState extends State<CustomerHome> {
                 title: Text('My Orders'),
                 onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, CustomerHome.id);
+                  Navigator.pushNamed(context, OrderView.id);
                 },
               ),
               ListTile(
@@ -190,6 +191,26 @@ class _CustomerHomeState extends State<CustomerHome> {
               Text(
                 '---------------------------------------------------------------------------------------------',
               ),
+              Expanded(child: ListView(
+                padding: const EdgeInsets.all(8),
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text("Item 1"),
+                      Spacer(),
+                      IconButton(
+                      icon: new Icon(Icons.cancel_outlined),
+                        onPressed: (){
+                        print("removed");
+                        }
+                      )
+                    ],
+                  ),
+                  Text("Item 2"),
+                  Text("Item 3"),
+                ],
+              )
+              )
             ],
           ),
         ),

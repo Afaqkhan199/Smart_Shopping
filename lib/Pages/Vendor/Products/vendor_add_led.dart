@@ -31,7 +31,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
     });
   }
 
-  Future uploadPic() async {
+  uploadPic() async {
 
     //Create a reference to the location you want to upload to in firebase
     Reference reference = _storage.ref().child("images/${nameController.text}");
@@ -60,6 +60,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
 
   addData()  async{
     await uploadPic();
+
     Map<String, dynamic> productData = {
       "title": nameController.text,
       "description": descriptionController.text,
