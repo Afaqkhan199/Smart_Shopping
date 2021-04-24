@@ -33,7 +33,7 @@ Widget getPrducts() {
   );
 }
 
-List<String> items = ['dummy','item'];
+List<String> items = [];
 
 class CustomerHome extends StatefulWidget {
 
