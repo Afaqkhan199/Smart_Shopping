@@ -191,6 +191,26 @@ class _CustomerHomeState extends State<CustomerHome> {
               Text(
                 '---------------------------------------------------------------------------------------------',
               ),
+              Expanded(child: ListView(
+                padding: const EdgeInsets.all(8),
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text("Item 1"),
+                      Spacer(),
+                      IconButton(
+                      icon: new Icon(Icons.cancel_outlined),
+                        onPressed: (){
+                        print("removed");
+                        }
+                      )
+                    ],
+                  ),
+                  Text("Item 2"),
+                  Text("Item 3"),
+                ],
+              )
+              )
             ],
           ),
         ),
