@@ -33,13 +33,17 @@ Widget getPrducts() {
   );
 }
 
+List<String> items = ['dummy','item'];
+
 class CustomerHome extends StatefulWidget {
+
   static const String id = 'customer_home';
   @override
   _CustomerHomeState createState() => _CustomerHomeState();
 }
 
 class _CustomerHomeState extends State<CustomerHome> {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Widget myColumn = Column(
     children: [
@@ -191,26 +195,29 @@ class _CustomerHomeState extends State<CustomerHome> {
               Text(
                 '---------------------------------------------------------------------------------------------',
               ),
-              Expanded(child: ListView(
-                padding: const EdgeInsets.all(8),
-                children: <Widget>[
-                  Row(
+              Expanded(child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index){
+                  return Row(
                     children: <Widget>[
-                      Text("Item 1"),
-                      Spacer(),
-                      IconButton(
-                      icon: new Icon(Icons.cancel_outlined),
-                        onPressed: (){
-                        print("removed");
-                        }
-                      )
+                      Expanded(child:
+                          ListTile(
+                            title: Text(items[index]),
+                          )
+                          ),
+                          Spacer(),
+                          IconButton(
+                              icon: new Icon(Icons.cancel_outlined),
+                              onPressed: (){
+                                items.removeAt(index);
+                                setState(() {});
+                              },
+                          ),
                     ],
-                  ),
-                  Text("Item 2"),
-                  Text("Item 3"),
-                ],
-              )
-              )
+                  );
+                },
+              ),
+              ),
             ],
           ),
         ),

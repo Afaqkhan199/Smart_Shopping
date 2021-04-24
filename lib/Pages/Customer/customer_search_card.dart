@@ -7,6 +7,7 @@ import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'dart:io';
+import 'customer_home.dart';
 
 class CustomerSearchCard extends StatefulWidget {
   static const String id = 'customer_search_card';
@@ -131,10 +132,16 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
               height: 50,
             ),
             RoundButton(
-              title: 'Add item to list',
-              onPressed: () {
-                print('Add to list');
-              },
+              title: 'Add item to list',onPressed: () {
+              if(nameController.text!=""){
+                items.add(nameController.text);
+                Navigator.pushNamed(context, CustomerHome.id);}
+              else{
+                final snackBar = SnackBar(content: Text('Enter Item Name First'));
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+              //print('Add to list');
+            },
             ),
           ],
         ),
