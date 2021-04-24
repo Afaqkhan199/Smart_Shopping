@@ -30,7 +30,9 @@ class AllProducts extends StatelessWidget {
             builder: (context) => ProductDetailPage(document)),
         );
       },
+      
       child: new ListTile(
+        leading: Image.asset('images/charger.jpg'),
       title: new Text(document.data()['title']),
       subtitle: new Text(document.data()['price']),
       ),
