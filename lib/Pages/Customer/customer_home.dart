@@ -11,6 +11,8 @@ import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/search_results.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
 // var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
 // Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
@@ -86,6 +88,13 @@ class _CustomerHomeState extends State<CustomerHome> {
                 onTap: () {
                   // Navigator.pop(context);
                   Navigator.pushNamed(context, ChatDetailPage.id);
+                },
+              ),
+              ListTile(
+                title: Text('Cart'),
+                onTap: () {
+                  // Navigator.pop(context);
+                  Navigator.pushNamed(context, cart.id);
                 },
               ),
               ListTile(
@@ -185,7 +194,7 @@ class _CustomerHomeState extends State<CustomerHome> {
               RoundButton(
                 title: 'Search List',
                 onPressed: () {
-                  print("Search List of items");
+                  Navigator.pushNamed(context, SearchResults.id);
                 },
               ),
               Text(
