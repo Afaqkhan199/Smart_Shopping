@@ -11,6 +11,8 @@ import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/search_results.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
 // var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
 // Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
@@ -33,13 +35,17 @@ Widget getPrducts() {
   );
 }
 
+List<String> items = [];
+
 class CustomerHome extends StatefulWidget {
+
   static const String id = 'customer_home';
   @override
   _CustomerHomeState createState() => _CustomerHomeState();
 }
 
 class _CustomerHomeState extends State<CustomerHome> {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Widget myColumn = Column(
     children: [
@@ -82,6 +88,13 @@ class _CustomerHomeState extends State<CustomerHome> {
                 onTap: () {
                   // Navigator.pop(context);
                   Navigator.pushNamed(context, ChatDetailPage.id);
+                },
+              ),
+              ListTile(
+                title: Text('Cart'),
+                onTap: () {
+                  // Navigator.pop(context);
+                  Navigator.pushNamed(context, cart.id);
                 },
               ),
               ListTile(
@@ -181,7 +194,7 @@ class _CustomerHomeState extends State<CustomerHome> {
               RoundButton(
                 title: 'Search List',
                 onPressed: () {
-                  print("Search List of items");
+                  Navigator.pushNamed(context, SearchResults.id);
                 },
               ),
               Text(
@@ -191,26 +204,29 @@ class _CustomerHomeState extends State<CustomerHome> {
               Text(
                 '---------------------------------------------------------------------------------------------',
               ),
-              Expanded(child: ListView(
-                padding: const EdgeInsets.all(8),
-                children: <Widget>[
-                  Row(
+              Expanded(child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index){
+                  return Row(
                     children: <Widget>[
-                      Text("Item 1"),
-                      Spacer(),
-                      IconButton(
-                      icon: new Icon(Icons.cancel_outlined),
-                        onPressed: (){
-                        print("removed");
-                        }
-                      )
+                      Expanded(child:
+                          ListTile(
+                            title: Text(items[index]),
+                          )
+                          ),
+                          Spacer(),
+                          IconButton(
+                              icon: new Icon(Icons.cancel_outlined),
+                              onPressed: (){
+                                items.removeAt(index);
+                                setState(() {});
+                              },
+                          ),
                     ],
-                  ),
-                  Text("Item 2"),
-                  Text("Item 3"),
-                ],
-              )
-              )
+                  );
+                },
+              ),
+              ),
             ],
           ),
         ),

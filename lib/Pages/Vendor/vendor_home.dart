@@ -7,6 +7,7 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/notification_page.dart';
 
 class VendorHome extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -61,6 +62,13 @@ class VendorHome extends StatelessWidget {
                 onTap: () {
                   // Navigator.pop(context);
                   Navigator.pushNamed(context, VendorHome.id);
+                },
+              ),
+              ListTile(
+                title: Text('Notifications'),
+                onTap: () {
+                  // Navigator.pop(context);
+                  Navigator.pushNamed(context, notification.id);
                 },
               ),
               ListTile(
