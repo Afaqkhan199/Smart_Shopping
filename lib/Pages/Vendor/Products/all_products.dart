@@ -32,7 +32,7 @@ class AllProducts extends StatelessWidget {
       },
       
       child: new ListTile(
-        leading: Image.asset('images/charger.jpg'),
+        leading: Image.network(document.data()['imageURL']),
       title: new Text(document.data()['title']),
       subtitle: new Text(document.data()['price']),
       ),
