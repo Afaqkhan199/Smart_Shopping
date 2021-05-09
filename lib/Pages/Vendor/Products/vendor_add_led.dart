@@ -33,23 +33,28 @@ class _VendorAddProductState extends State<VendorAddLed> {
 
   uploadPic() async {
 
-    //Create a reference to the location you want to upload to in firebase
-    Reference reference = _storage.ref().child("images/${nameController.text}");
+    try{
+      await _storage.ref("images/${nameController.text}").putFile(_img);
+    }on FirebaseException{
 
-    //Upload the file to firebase
-    UploadTask uploadTask = reference.putFile(_img);
+    }
 
-    // Waits till the file is uploaded then stores the download url
-    uploadTask.then((res) async{
-       imgURL = await res.ref.getDownloadURL();
-    });
+  }
 
+  Future<void> downloadURL() async {
+    imgURL = await _storage.ref("images/${nameController.text}").getDownloadURL();
   }
 
   final _auth = FirebaseAuth.instance;
   String userEmail;
   String getCurrentUserEmail() {
     return userEmail = _auth.currentUser.email;
+  }
+
+  uploadData() async{
+    await uploadPic();
+    await downloadURL();
+    addData();
   }
 
   final TextEditingController nameController = TextEditingController();
@@ -298,7 +303,7 @@ class _VendorAddProductState extends State<VendorAddLed> {
               title: 'Save',
               onPressed: () {
                 print('Save data to firebase');
-                addData();
+                uploadData();
               },
             ),
           ],

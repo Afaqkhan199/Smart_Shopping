@@ -27,20 +27,18 @@ class _VendorAddProductState extends State<VendorAddCard> {
     });
   }
 
-  uploadPic() async {
+  Future<void> uploadPic() async {
+    try{
+      await _storage.ref("images/${nameController.text}").putFile(_img);
+    }on FirebaseException{
 
-    //Create a reference to the location you want to upload to in firebase
-    Reference reference = _storage.ref().child("images/${nameController.text}");
-
-    //Upload the file to firebase
-    UploadTask uploadTask = reference.putFile(_img);
-
-    // Waits till the file is uploaded then stores the download url
-    uploadTask.then((res) async{
-      imgURL = await res.ref.getDownloadURL();
-    });
-
+    }
   }
+
+  Future<void> downloadURL() async {
+     imgURL = await _storage.ref("images/${nameController.text}").getDownloadURL();
+  }
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController modelController = TextEditingController();
@@ -53,8 +51,13 @@ class _VendorAddProductState extends State<VendorAddCard> {
     return userEmail = _auth.currentUser.email;
   }
 
-  addData() async{
+  uploadData() async{
     await uploadPic();
+    await downloadURL();
+    addData();
+  }
+
+  addData() async{
     Map<String,dynamic> productData = {
       "title" : nameController.text,
       "description" : descriptionController.text,
@@ -245,7 +248,7 @@ class _VendorAddProductState extends State<VendorAddCard> {
               title: 'Save',
               onPressed: () {
                 print('Save data to firebase');
-                addData();
+                uploadData();
                 print('data added');
               },
             ),
