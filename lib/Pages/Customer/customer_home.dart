@@ -105,6 +105,12 @@ class _CustomerHomeState extends State<CustomerHome> {
                 },
               ),
               ListTile(
+                title: Text('Settings'),
+                onTap: () async {
+
+                },
+              ),
+              ListTile(
                 title: Text('Logout'),
                 onTap: () async {
                   await _auth.signOut();

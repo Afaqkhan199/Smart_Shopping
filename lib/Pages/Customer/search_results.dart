@@ -14,7 +14,7 @@ class _searchResultsState extends State<SearchResults> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
         title: Text(
-          'Search Results',
+          'Matched Items',
           style: kAppBarTitleTextStyle,
         ),
       ),

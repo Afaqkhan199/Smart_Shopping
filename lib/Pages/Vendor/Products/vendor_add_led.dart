@@ -60,13 +60,21 @@ class _VendorAddProductState extends State<VendorAddLed> {
 
   addData()  async{
     await uploadPic();
+    String smartTv;
+    if(_android.toString() == "Android.N"){
+      smartTv = "No";
+    }
+    else{
+      smartTv = "Yes";
+    }
 
     Map<String, dynamic> productData = {
       "title": nameController.text,
       "description": descriptionController.text,
+      "category" : "LED",
       "size": _SizeSelectedCategory,
       "resolution": _ResSelectedCategory,
-      "android": _android.toString(),
+      "android": smartTv,
       "price": priceController.text,
       "vendorEmail": getCurrentUserEmail(),
       "imageURL" : imgURL

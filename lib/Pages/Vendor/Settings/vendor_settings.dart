@@ -7,8 +7,8 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Settings/change_description.dart
 
 class VendorSettings extends StatelessWidget {
   static const String id = 'vendor_settings';
-  static final String name = 'Dummy name';
-  static final description = 'Hey there, this is a dummy description';
+  static final String name = 'Techno City Shop';
+  static final description = 'Shop Description';
   static final location = 'Islamabad';
 
 
