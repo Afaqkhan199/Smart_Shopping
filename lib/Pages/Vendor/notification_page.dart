@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/select_item.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 
 class notification extends StatefulWidget {
   static const String id = 'notifications';
@@ -39,13 +41,16 @@ class _notificationState extends State<notification> {
                   child: const SizedBox(
                     width: 300,
                     height: 100,
-                    child: ListTile(title: Text('Select Product to link')),
+                    //child: ListTile(title: Text('Select Product to link'), onTap: Navigator.pushNamed(context, SelectItem.id)),
                   ),
                 ),
               ),
               RoundButton(
+                title: "Select Product", onPressed: ()=> Navigator.pushNamed(context, VendorProducts.id),
+              ),
+              RoundButton(
                 title: "Send for Approval",
-              )
+              ),
             ],
           ),
         ),
