@@ -5,8 +5,10 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/led.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/graphic_card.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/vendor_home.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AllProducts extends StatelessWidget {
+  FirebaseStorage _storage = FirebaseStorage.instance;
   final String ve = VendorHome().getEmail();
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,16 @@ class AllProducts extends StatelessWidget {
     );
   }
 
+  Future<void> deleteImage(String url, DocumentSnapshot d) async{
+    var photo = _storage.refFromURL(url);
+    await photo.delete();
+  }
+
   void removeProduct(DocumentSnapshot d) {
     print(d.data()['title']);
+    String imgFileURL = d["imageURL"];
+    deleteImage(imgFileURL, d);
+    d.reference.delete().then((value) => print("Product Deleted"))
+        .catchError((error) => print("Failed to delete product: $error"));
   }
 }
