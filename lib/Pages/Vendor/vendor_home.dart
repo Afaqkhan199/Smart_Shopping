@@ -8,8 +8,14 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/notification_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VendorHome extends StatelessWidget {
+  String getEmail() {
+    User user = FirebaseAuth.instance.currentUser;
+    return user.email.toString();
+  }
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   static const String id = 'vendor_home';
   @override
@@ -23,7 +29,7 @@ class VendorHome extends StatelessWidget {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                  'Vendor' + 'User_Name',
+                  'Vendor: ' + getEmail(),
                   style: TextStyle(
                     color: Colors.white,
                   ),

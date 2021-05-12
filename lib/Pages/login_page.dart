@@ -91,12 +91,12 @@ class _LoginState extends State<Login> {
               title: 'Log In',
               onPressed: () async {
                 try {
-                   final user = await _auth.signInWithEmailAndPassword(
+                  final user = await _auth.signInWithEmailAndPassword(
                       email: emailController.text,
                       password: passwordController.text);
                   if (user != null && _user == Users.Vendor)
                     Navigator.pushNamed(context, VendorHome.id);
-                  if (user != null && _user == Users.Customer)
+                  else if (user != null && _user == Users.Customer)
                     Navigator.pushNamed(context, CustomerHome.id);
                 } on FirebaseAuthException catch (e) {
                   return e.message;

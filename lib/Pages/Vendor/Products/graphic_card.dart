@@ -1,39 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
-import 'package:fyp_smart_shopping/components/text_area.dart';
 
-class ProductDetailPage extends StatelessWidget {
-  // static const String id="product_detail_page";
-  ProductDetailPage(this.doc);
+class CardDetails extends StatelessWidget {
+  CardDetails(this.doc);
   final DocumentSnapshot doc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Product Details", style: kAppBarTitleTextStyle),
+        title: Text(doc.data()['title'],
+            style: kAppBarTitleTextStyle.copyWith(letterSpacing: 0)),
         backgroundColor: Colors.deepOrangeAccent,
       ),
       body: ListView(
         children: <Widget>[
           Container(
-            child: Image.asset('images/led.jpg')//doc.data()['imgURL']!=null ? Image.network(doc.data()['imgURL']): Text('No image'),
+            child: doc.data()['imageURL'] == null
+                ? Image.network(
+                    'https://firebasestorage.googleapis.com/v0/b/smartshopping-979f9.appspot.com/o/images%2FNo_Image_Available.jpg?alt=media&token=d109c767-611b-4cf4-a55f-4e0ad304f4c5')
+                : Image.network(doc.data()['imageURL']),
           ),
           SizedBox(
             height: 30,
           ),
           Text(
-            "    TCL 32 inch Smart LED",
-            style: TextStyle(
-            fontWeight: FontWeight.bold,
-              fontSize: 20,
-          ),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Text(
-            "     -Android",
+            "     Model: " + doc.data()['model'],
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -43,7 +35,7 @@ class ProductDetailPage extends StatelessWidget {
             height: 16,
           ),
           Text(
-            "     -720p resolution",
+            "     Ram: " + doc.data()['ram'],
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -53,7 +45,7 @@ class ProductDetailPage extends StatelessWidget {
             height: 16,
           ),
           Text(
-            "     -32 inch screen",
+            "     Description: " + doc.data()['description'],
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -63,7 +55,7 @@ class ProductDetailPage extends StatelessWidget {
             height: 16,
           ),
           Text(
-            "     -32000pkr",
+            "     Price: " + doc.data()['price'] + " pkr",
             style: TextStyle(
               color: Colors.red,
               fontWeight: FontWeight.bold,
