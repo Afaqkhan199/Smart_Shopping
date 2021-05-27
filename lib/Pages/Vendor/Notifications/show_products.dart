@@ -48,7 +48,8 @@ class ShowProducts extends StatelessWidget {
   InkWell inkwell(DocumentSnapshot document, BuildContext context) {
     return InkWell(
       onTap: () {
-        prodName = 'ahmarrr';
+        Map<String, dynamic> data = document.data();
+        prodName = "${data['title']}";
         Navigator.pushNamed(context, notification.id);
       },
       child: new ListTile(

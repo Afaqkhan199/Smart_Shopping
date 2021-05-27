@@ -3,8 +3,9 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/select_item.dart';
+import 'package:fyp_smart_shopping/components/text_box.dart';
 
-String prodName = 'yes poop?';
+String prodName = 'No Product Selected';
 
 
 class notification extends StatefulWidget {
@@ -16,6 +17,7 @@ class notification extends StatefulWidget {
 }
 
 class _notificationState extends State<notification> {
+  final TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     String prodName2 = prodName;
@@ -31,11 +33,7 @@ class _notificationState extends State<notification> {
             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
           child: ListView(
             children: <Widget>[
-              TextField(
-                onChanged: (value) {
-                },
-                decoration: kTextFieldDecoration.copyWith(hintText: 'Enter Notification Text'),
-              ),
+              TextBox(hnt: 'Enter Notification Text', textController: nameController),
               Card(
                 child: InkWell(
                   splashColor: Colors.blue.withAlpha(30),
@@ -56,9 +54,12 @@ class _notificationState extends State<notification> {
               RoundButton(
                 title: "Send for Approval",
                 onPressed:(){
-                  prodName2 = prodName;
-                  print("approval pressed");
-                  setState(() {});
+                  if(prodName!='No Product Selected' && nameController.text!="")
+                  print("approval pressed!");
+                  else{
+                    final snackBar = SnackBar(content: Text('Select Item and Enter Text First'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 },
               ),
             ],

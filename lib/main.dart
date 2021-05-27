@@ -24,8 +24,8 @@ import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/search_results.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
-import 'file:///C:/Users/Ahmed/AndroidStudioProjects/Smart_Shopping/lib/Pages/Vendor/Notifications/notification_page.dart';
-import 'file:///C:/Users/Ahmed/AndroidStudioProjects/Smart_Shopping/lib/Pages/Vendor/Notifications/select_item.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/notification_page.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/select_item.dart';
 
 import 'package:fyp_smart_shopping/Services/auth.dart';
 
