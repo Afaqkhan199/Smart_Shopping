@@ -49,7 +49,10 @@ class _notificationState extends State<notification> {
                 ),
               ),
               RoundButton(
-                title: "Select Product", onPressed: ()=> Navigator.pushNamed(context, SelectItem.id),
+                title: "Select Product", onPressed: () {
+                Navigator.of(context).pushNamed(SelectItem.id).then((value) => setState(() {}));
+                  //Navigator.pushNamed(context, SelectItem.id);
+              },
               ),
               RoundButton(
                 title: "Send for Approval",

@@ -50,7 +50,8 @@ class ShowProducts extends StatelessWidget {
       onTap: () {
         Map<String, dynamic> data = document.data();
         prodName = "${data['title']}";
-        Navigator.pushNamed(context, notification.id);
+        Navigator.pop(context);
+        //Navigator.pushNamed(context, notification.id);
       },
       child: new ListTile(
         leading: document.data()['imageURL'] == null
