@@ -1,5 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
+import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
+import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -10,21 +16,77 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   final List<String> _listItem = [
     'images/Logo.png',
-    'images/home.png',
-    'images/home.png',
-    'images/home.png',
-    'images/home.png',
-    'images/home.png',
-    'images/home.png',
-    'images/home.png',
     'images/home.png',
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+        length: 3,
+    child: Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+                'Customer' + 'User_Name',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.deepOrangeAccent,
+              ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                // Navigator.pop(context);
+                Navigator.pushNamed(context, CustomerHome.id);
+              },
+            ),
+            ListTile(
+              title: Text('Chat'),
+              onTap: () {
+                // Navigator.pop(context);
+                Navigator.pushNamed(context, ChatDetailPage.id);
+              },
+            ),
+            ListTile(
+              title: Text('Cart'),
+              onTap: () {
+                // Navigator.pop(context);
+                Navigator.pushNamed(context, cart.id);
+              },
+            ),
+            ListTile(
+              title: Text('My Orders'),
+              onTap: () {
+                // Navigator.pop(context);
+                Navigator.pushNamed(context, OrderView.id);
+              },
+            ),
+            ListTile(
+              title: Text('Settings'),
+              onTap: () async {
+
+              },
+            ),
+            ListTile(
+              title: Text('Logout'),
+              onTap: () async {
+                await _auth.signOut();
+                Navigator.pushNamed(context, Welcome.id);
+              },
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
@@ -95,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
-                                image: AssetImage('images/Logo.png'),
+                                image: AssetImage(item),
                                 fit: BoxFit.cover
                             )
                         ),
@@ -113,6 +175,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    ),
     );
   }
 }
