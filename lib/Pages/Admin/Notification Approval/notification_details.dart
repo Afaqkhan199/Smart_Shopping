@@ -4,6 +4,8 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification Approval/show_details.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/grid_test.dart';
 
 class NotificationDetails extends StatefulWidget {
   const NotificationDetails({Key key}) : super(key: key);
@@ -14,6 +16,8 @@ class NotificationDetails extends StatefulWidget {
 }
 
 class _NotificationDetailsState extends State<NotificationDetails> {
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  Map<String, dynamic> productDetails = product.data();
   FirebaseStorage _storage = FirebaseStorage.instance;
   CollectionReference requests =
   FirebaseFirestore.instance.collection('notifications');
@@ -52,7 +56,8 @@ class _NotificationDetailsState extends State<NotificationDetails> {
             RoundButton(
               title: "Dismiss Notification",
               onPressed: () {
-                print('notification Dismissed');
+                Navigator.pushNamed(context, HomePage.id);
+                print("test");
               },
             ),
           ],

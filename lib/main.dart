@@ -5,6 +5,7 @@ import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/notificat
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_login.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/admin_notifications.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/grid_test.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
@@ -70,6 +71,7 @@ class SmartShopping extends StatelessWidget {
         SelectItem.id: (context) => SelectItem(),
         NotificationApproval.id: (context) => NotificationApproval(),
         NotificationDetails.id: (context) => NotificationDetails(),
+        HomePage.id: (context) => HomePage(),
        },
     );
   }
