@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/admin_notifications.dart';
 
 class AdminHome extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -46,6 +47,13 @@ class AdminHome extends StatelessWidget {
                 onTap: () {
                   // Navigator.pop(context);
                   Navigator.pushNamed(context, AdminHome.id);
+                },
+              ),
+              ListTile(
+                title: Text('Notifications'),
+                onTap: () {
+                  // Navigator.pop(context);
+                  Navigator.pushNamed(context, NotificationApproval.id);
                 },
               ),
               ListTile(
