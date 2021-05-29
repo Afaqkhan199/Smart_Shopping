@@ -8,6 +8,9 @@ import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dar
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
 
+
+
+
 class SearchLogic extends StatefulWidget {
   const SearchLogic({Key key}) : super(key: key);
 
@@ -21,7 +24,7 @@ class _SearchLogicState extends State<SearchLogic> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: products.snapshots(),
+      stream: products.where('keywords', arrayContainsAny: items).snapshots(),//products.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -34,19 +37,21 @@ class _SearchLogicState extends State<SearchLogic> {
           );
         }
 
+
         return new ListView(
-          children: snapshot.data.docs.map((DocumentSnapshot document) {
-            if (document.data()['title'].toString().contains(items[document.hashCode])) {
-              print(0);
-              return inkwell(document, context);
-            }
-            else {
-              return Container(
-                height: 0,
-                child: Text(''),
-              );
-            }
-          }).toList(),
+            children:
+           snapshot.data.docs.map((DocumentSnapshot document) {
+             //if (document.data()['title'].toString().contains(items[0])) {
+             print(document.data()['title']);
+               return inkwell(document, context);
+            //}
+            //else {
+              // return Container(
+            // height: 0,
+             //    child: Text(''),
+             //   );
+           //   }
+            }).toList(),
         );
       },
     );

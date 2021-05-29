@@ -132,7 +132,9 @@ class _CustomerSearchChargerState extends State<CustomerSearchCharger> {
             RoundButton(
               title: 'Add item to list',onPressed: () {
               if(nameController.text!=""){
-                items.add(nameController.text);
+                SearchKeywords.add(nameController.text);
+                List<String> searchKeys = nameController.text.split(" ");
+                items.addAll(searchKeys);
                 Navigator.pushNamed(context, CustomerHome.id);}
               else{
                 final snackBar = SnackBar(content: Text('Enter Item Name First'));

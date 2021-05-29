@@ -175,6 +175,7 @@ class _CustomerSearchLedState extends State<CustomerSearchLed> {
               title: 'Add item to list',
               onPressed: () {
                 if(nameController.text!=""){
+                  SearchKeywords.add(nameController.text);
                   LED.title = nameController.text;
                   LED.size = _SizeSelectedCategory;
                   if(_android.toString() == "Android.N"){
@@ -184,7 +185,8 @@ class _CustomerSearchLedState extends State<CustomerSearchLed> {
                     LED.android = "Yes";
                   }
                   LED.resolution = _ResSelectedCategory;
-                  items.add(nameController.text);
+                  List<String> searchKeys = nameController.text.split(" ");
+                  items.addAll(searchKeys);
                 Navigator.pushNamed(context, CustomerHome.id);}
                 else{
                   final snackBar = SnackBar(content: Text('Enter Item Name First'));

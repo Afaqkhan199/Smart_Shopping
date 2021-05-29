@@ -58,6 +58,12 @@ class _VendorAddProductState extends State<VendorAddCard> {
   }
 
   addData() async{
+    String lowerCase = nameController.text.toLowerCase();
+    String upperCase = nameController.text.toUpperCase();
+    List<String> normalSplit = nameController.text.split(" ");
+    List<String> upperSplit = upperCase.split(" ");
+    List<String> lowerSplit = lowerCase.split(" ");
+    List<String> searchKey = normalSplit + upperSplit + lowerSplit;
     Map<String,dynamic> productData = {
       "title" : nameController.text,
       "description" : descriptionController.text,
@@ -66,7 +72,8 @@ class _VendorAddProductState extends State<VendorAddCard> {
       "price" : priceController.text,
       "category" : "Graphics Card",
       "vendorEmail" : getCurrentUserEmail(),
-      "imageURL" : imgURL
+      "imageURL" : imgURL,
+      "keywords" : searchKey,
     };
 
     CollectionReference collectionReference = FirebaseFirestore.instance.collection('products');

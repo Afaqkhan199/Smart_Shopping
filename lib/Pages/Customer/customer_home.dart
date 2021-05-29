@@ -36,6 +36,8 @@ Widget getPrducts() {
 }
 
 List<String> items = [];
+List<String> SearchKeywords = [];
+
 
 class CustomerHome extends StatefulWidget {
 
@@ -200,6 +202,7 @@ class _CustomerHomeState extends State<CustomerHome> {
               RoundButton(
                 title: 'Search List',
                 onPressed: () {
+                  if(items.isNotEmpty)
                   Navigator.pushNamed(context, SearchResults.id);
                 },
               ),
@@ -211,13 +214,13 @@ class _CustomerHomeState extends State<CustomerHome> {
                 '---------------------------------------------------------------------------------------------',
               ),
               Expanded(child: ListView.builder(
-                itemCount: items.length,
+                itemCount: SearchKeywords.length,
                 itemBuilder: (context, index){
                   return Row(
                     children: <Widget>[
                       Expanded(child:
                           ListTile(
-                            title: Text(items[index]),
+                            title: Text(SearchKeywords[index]),
                           )
                           ),
                           Spacer(),
