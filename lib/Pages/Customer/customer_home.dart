@@ -37,6 +37,7 @@ Widget getPrducts() {
 
 List<String> items = [];
 List<String> SearchKeywords = [];
+List ProductObjects = [];
 
 
 class CustomerHome extends StatefulWidget {
@@ -202,7 +203,9 @@ class _CustomerHomeState extends State<CustomerHome> {
               RoundButton(
                 title: 'Search List',
                 onPressed: () {
-                  if(items.isNotEmpty)
+                  //ProductObjects.clear();
+                  print(ProductObjects.length);
+                  if(SearchKeywords.isNotEmpty)
                   Navigator.pushNamed(context, SearchResults.id);
                 },
               ),
@@ -227,7 +230,7 @@ class _CustomerHomeState extends State<CustomerHome> {
                           IconButton(
                               icon: new Icon(Icons.cancel_outlined),
                               onPressed: (){
-                                items.removeAt(index);
+                                SearchKeywords.removeAt(index);
                                 setState(() {});
                               },
                           ),

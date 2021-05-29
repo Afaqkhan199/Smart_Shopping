@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/search_classes.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,6 +15,8 @@ class CustomerSearchCard extends StatefulWidget {
   @override
   _CustomerSearchCardState createState() => _CustomerSearchCardState();
 }
+
+var Card = new SearchCard();
 
 class _CustomerSearchCardState extends State<CustomerSearchCard> {
   final TextEditingController nameController = TextEditingController();
@@ -134,6 +137,10 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
             RoundButton(
               title: 'Add item to list',onPressed: () {
               if(nameController.text!=""){
+                Card.title = nameController.text;
+                Card.model = _TypeSelectedCategory;
+                Card.ram = _RamSelectedCategory;
+                ProductObjects.add(Card);
                 SearchKeywords.add(nameController.text);
                 List<String> searchKeys = nameController.text.split(" ");
                 items.addAll(searchKeys);

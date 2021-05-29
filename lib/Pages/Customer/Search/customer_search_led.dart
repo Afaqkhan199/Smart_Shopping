@@ -185,6 +185,7 @@ class _CustomerSearchLedState extends State<CustomerSearchLed> {
                     LED.android = "Yes";
                   }
                   LED.resolution = _ResSelectedCategory;
+                  ProductObjects.add(LED);
                   List<String> searchKeys = nameController.text.split(" ");
                   items.addAll(searchKeys);
                 Navigator.pushNamed(context, CustomerHome.id);}
