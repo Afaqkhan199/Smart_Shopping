@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/text_area.dart';
@@ -79,9 +80,24 @@ class CustomerLedDetails extends StatelessWidget {
           RoundButton(
             title: "Add to Cart",
             onPressed: (){
-              AddToCart a1 = new AddToCart();
-              a1.imgUrl.add(doc.data()['imageURL']);
-              a1.addFirst();
+              CollectionReference cart = FirebaseFirestore.instance.collection('cart');
+              Map<String, dynamic> productData = {
+                "title": doc.data()['title'],
+                "description": doc.data()['description'],
+                "category" : "LED",
+                "size": doc.data()['size'],
+                "resolution": doc.data()['resolution'],
+                "android": doc.data()['android'],
+                "price": doc.data()['price'],
+                "vendorEmail": doc.data()['vendorEmail'],
+                "imageURL" : doc.data()['imageURL'],
+                "customerEmail" : getEmail(),
+              };
+              cart.add(productData);
+
+              //AddToCart a1 = new AddToCart();
+              //a1.imgUrl.add(doc.data()['imageURL']);
+              //a1.addFirst();
             },
           )
         ],

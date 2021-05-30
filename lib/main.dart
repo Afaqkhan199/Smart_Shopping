@@ -27,7 +27,7 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_card.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/search_results.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Cart/cart.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/notification_page.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/select_item.dart';
 

@@ -7,7 +7,7 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
-CollectionReference users = FirebaseFirestore.instance.collection('cart');
+CollectionReference cart = FirebaseFirestore.instance.collection('cart');
 
 //Future<void> updateCart() {
  // return users
@@ -93,11 +93,22 @@ class CustomerChargerDetails extends StatelessWidget {
           RoundButton(
             title: "Add to Cart",
             onPressed: (){
-             // imgUrl = doc.data()['imageURL'];
+              Map<String,dynamic> productData = {"title" : doc.data()['title'],
+                "description" : doc.data()['description'],
+                "type" : doc.data()['type'],
+                "company" : doc.data()['company'],
+                "price" : doc.data()['price'],
+                "category" : "Charger",
+                "vendorEmail" : doc.data()['vendorEmail'],
+                "imageURL" : doc.data()['imageURL'],
+                "customerEmail" : getEmail(),
+              };
+              cart.add(productData);
+              // imgUrl = doc.data()['imageURL'];
              // updateCart();
-              AddToCart a1 = new AddToCart();
-              a1.imgUrl.add(doc.data()['imageURL']);
-                a1.addFirst();
+              //AddToCart a1 = new AddToCart();
+              //a1.imgUrl.add(doc.data()['imageURL']);
+                //a1.addFirst();
                  },
           ),
         ],
