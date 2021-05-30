@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextBox extends StatelessWidget {
-  TextBox({this.hnt, this.textController});
+class UpdTextBox extends StatelessWidget {
+  UpdTextBox({this.hnt, this.textController});
 
   final TextEditingController textController;
   final String hnt;
