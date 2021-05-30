@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/add_to_cart.dart';
 
 class CustomerCardDetails extends StatelessWidget {
   CustomerCardDetails(this.doc);
@@ -68,7 +69,11 @@ class CustomerCardDetails extends StatelessWidget {
           ),
           RoundButton(
             title: "Add to Cart",
-            //onPressed: ,
+            onPressed: (){
+              AddToCart a1 = new AddToCart();
+              a1.imgUrl.add(doc.data()['imageURL']);
+              a1.addFirst();
+            },
           )
         ],
       ),

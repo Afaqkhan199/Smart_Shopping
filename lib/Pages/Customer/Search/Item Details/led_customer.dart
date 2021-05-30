@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/text_area.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/add_to_cart.dart';
 
 class CustomerLedDetails extends StatelessWidget {
   CustomerLedDetails(this.doc);
@@ -77,7 +78,11 @@ class CustomerLedDetails extends StatelessWidget {
           ),
           RoundButton(
             title: "Add to Cart",
-            //onPressed: ,
+            onPressed: (){
+              AddToCart a1 = new AddToCart();
+              a1.imgUrl.add(doc.data()['imageURL']);
+              a1.addFirst();
+            },
           )
         ],
       ),

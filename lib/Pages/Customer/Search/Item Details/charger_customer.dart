@@ -1,7 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/Item%20Details/add_to_cart.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
+
+CollectionReference users = FirebaseFirestore.instance.collection('cart');
+
+//Future<void> updateCart() {
+ // return users
+ //     .doc(getEmail())
+//      .set({
+//    'product_url': imgUrl,
+ // })
+ //     .then((value) => print("User Added"))
+  //    .catchError((error) => print("Failed to add user: $error"));
+//}
+
+//String imgUrl;
 
 class CustomerChargerDetails extends StatelessWidget {
   CustomerChargerDetails(this.doc);
@@ -9,6 +27,11 @@ class CustomerChargerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String getEmail() {
+      User user = FirebaseAuth.instance.currentUser;
+      return user.email.toString();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(doc.data()['title'],
@@ -69,7 +92,13 @@ class CustomerChargerDetails extends StatelessWidget {
           ),
           RoundButton(
             title: "Add to Cart",
-            //onPressed: print("added to cart"),
+            onPressed: (){
+             // imgUrl = doc.data()['imageURL'];
+             // updateCart();
+              AddToCart a1 = new AddToCart();
+              a1.imgUrl.add(doc.data()['imageURL']);
+                a1.addFirst();
+                 },
           ),
         ],
       ),
