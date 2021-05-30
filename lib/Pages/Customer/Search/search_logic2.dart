@@ -11,20 +11,20 @@ import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
 
 
-class SearchLogic extends StatefulWidget {
-  const SearchLogic({Key key}) : super(key: key);
+class SearchTest extends StatefulWidget {
+  const SearchTest({Key key}) : super(key: key);
 
   @override
-  _SearchLogicState createState() => _SearchLogicState();
+  _SearchTestState createState() => _SearchTestState();
 }
 
-class _SearchLogicState extends State<SearchLogic> {
+class _SearchTestState extends State<SearchTest> {
   FirebaseStorage _storage = FirebaseStorage.instance;
   CollectionReference products = FirebaseFirestore.instance.collection('products');
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: products.where('keywords', arrayContainsAny: SearchKeywords).snapshots(),//products.snapshots(),
+      stream: products.where('keywords', arrayContainsAny: SearchKeywords).where('category', isEqualTo: 'Graphics Card').snapshots(),//products.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -38,18 +38,18 @@ class _SearchLogicState extends State<SearchLogic> {
         }
 
         return new ListView(
-            children:
-           snapshot.data.docs.map((DocumentSnapshot document) {
-             //if (document.data()['title'].toString().contains(items[0])) {
-               return inkwell(document, context);
+          children:
+          snapshot.data.docs.map((DocumentSnapshot document) {
+            //if (document.data()['title'].toString().contains(items[0])) {
+            return inkwell(document, context);
             //}
             //else {
-              // return Container(
+            // return Container(
             // height: 0,
-             //    child: Text(''),
-             //   );
-           //   }
-            }).toList(),
+            //    child: Text(''),
+            //   );
+            //   }
+          }).toList(),
         );
       },
     );
@@ -83,12 +83,12 @@ class _SearchLogicState extends State<SearchLogic> {
           print('No such category');
       },
       child: new ListTile(
-        //trailing: IconButton(
-          //icon: new Icon(Icons.cancel_outlined),
-        //  onPressed: () {
-          //  print("removed");
-        //  },
-       // ),
+        trailing: IconButton(
+          icon: new Icon(Icons.cancel_outlined),
+          onPressed: () {
+            print("removed");
+          },
+        ),
         leading: document.data()['imageURL'] == null
             ? Image.network(
             'https://firebasestorage.googleapis.com/v0/b/smartshopping-979f9.appspot.com/o/images%2FNo_Image_Available.jpg?alt=media&token=d109c767-611b-4cf4-a55f-4e0ad304f4c5')

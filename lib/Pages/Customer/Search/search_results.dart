@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/search_logic.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/search_logic2.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 
 class SearchResults extends StatefulWidget {
@@ -19,7 +20,7 @@ class _searchResultsState extends State<SearchResults> {
           style: kAppBarTitleTextStyle,
         ),
       ),
-      body:  SearchLogic(),
+      body: SearchLogic(),
     );
   }
 }
