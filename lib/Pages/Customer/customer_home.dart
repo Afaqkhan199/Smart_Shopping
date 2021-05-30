@@ -19,6 +19,12 @@ import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
 // Product p2 = Product('Mandy', 'T shirt Description', '2500', '20');
 // Product p3 = Product('Nandy', 'T shirt Description', '3500', '25');
 
+String getEmail() {
+  User user = FirebaseAuth.instance.currentUser;
+  return user.email.toString();
+}
+
+
 Widget getPrducts() {
   return Column(
     children: [
@@ -70,7 +76,7 @@ class _CustomerHomeState extends State<CustomerHome> {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                  'Customer' + 'User_Name',
+                  getEmail(),
                   style: TextStyle(
                     color: Colors.white,
                   ),

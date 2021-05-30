@@ -36,7 +36,6 @@ class _NotificationDetailsState extends State<NotificationDetails> {
         child: Column(
           children: <Widget>[
             Text("Product Name:",
-              style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 0.5),
             ),
             Text("${data['title']}"),
             Text("Notification Text:",
