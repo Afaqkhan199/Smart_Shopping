@@ -19,8 +19,6 @@ class VendorProducts extends StatefulWidget {
 }
 
 class _VendorProductsState extends State<VendorProducts> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,15 +66,15 @@ class _VendorProductsState extends State<VendorProducts> {
                 SizedBox(
                   width: 5,
                 ),
-                Expanded(
-                  flex: 1,
-                  child: RoundButton(
-                    title: 'Show',
-                    onPressed: () {
-                      //Check  category, show products
-                    },
-                  ),
-                ),
+                // Expanded(
+                //   flex: 1,
+                //   child: RoundButton(
+                //     title: 'Show',
+                //     onPressed: () {
+                //       //Check  category, show products
+                //     },
+                //   ),
+                // ),
                 SizedBox(
                   width: 5,
                 ),
@@ -117,7 +115,6 @@ class _VendorProductsState extends State<VendorProducts> {
     );
   }
 }
-
 
 var _categories = ['All', 'LED', 'Graphic Card', 'Charger'];
 var _selectedCategory = 'All';

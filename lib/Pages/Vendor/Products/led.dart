@@ -63,6 +63,9 @@ class LedDetails extends StatelessWidget {
               fontSize: 16,
             ),
           ),
+          SizedBox(
+            height: 16,
+          ),
           Text(
             "     Price: " + doc.data()['price'] + " pkr",
             style: TextStyle(
@@ -70,9 +73,6 @@ class LedDetails extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
-          ),
-          SizedBox(
-            height: 16,
           ),
         ],
       ),
