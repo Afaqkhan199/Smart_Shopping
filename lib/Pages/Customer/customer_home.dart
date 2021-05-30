@@ -7,11 +7,11 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_card.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_charger.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/search_results.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/search_results.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
 // var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
@@ -36,6 +36,9 @@ Widget getPrducts() {
 }
 
 List<String> items = [];
+List<String> SearchKeywords = [];
+List ProductObjects = [];
+
 
 class CustomerHome extends StatefulWidget {
 
@@ -200,6 +203,9 @@ class _CustomerHomeState extends State<CustomerHome> {
               RoundButton(
                 title: 'Search List',
                 onPressed: () {
+                  //ProductObjects.clear();
+                  print(ProductObjects.length);
+                  if(SearchKeywords.isNotEmpty)
                   Navigator.pushNamed(context, SearchResults.id);
                 },
               ),
@@ -211,20 +217,20 @@ class _CustomerHomeState extends State<CustomerHome> {
                 '---------------------------------------------------------------------------------------------',
               ),
               Expanded(child: ListView.builder(
-                itemCount: items.length,
+                itemCount: SearchKeywords.length,
                 itemBuilder: (context, index){
                   return Row(
                     children: <Widget>[
                       Expanded(child:
                           ListTile(
-                            title: Text(items[index]),
+                            title: Text(SearchKeywords[index]),
                           )
                           ),
                           Spacer(),
                           IconButton(
                               icon: new Icon(Icons.cancel_outlined),
                               onPressed: (){
-                                items.removeAt(index);
+                                SearchKeywords.removeAt(index);
                                 setState(() {});
                               },
                           ),

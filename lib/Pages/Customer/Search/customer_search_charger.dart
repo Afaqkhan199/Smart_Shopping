@@ -2,19 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/search_classes.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'package:fyp_smart_shopping/components/text_area.dart';
 import 'dart:io';
-import 'customer_home.dart';
+import '../customer_home.dart';
 
 class CustomerSearchCharger extends StatefulWidget {
   static const String id = 'customer_search_charger';
   @override
   _CustomerSearchChargerState createState() => _CustomerSearchChargerState();
 }
+
+var Charger = new SearchCharger();
 
 class _CustomerSearchChargerState extends State<CustomerSearchCharger> {
   final TextEditingController nameController = TextEditingController();
@@ -132,7 +135,13 @@ class _CustomerSearchChargerState extends State<CustomerSearchCharger> {
             RoundButton(
               title: 'Add item to list',onPressed: () {
               if(nameController.text!=""){
-                items.add(nameController.text);
+                Charger.title = nameController.text;
+                Charger.company = _CompanySelectedCategory;
+                Charger.type = _TypeSelectedCategory;
+                ProductObjects.add(Charger);
+                SearchKeywords.add(nameController.text);
+                List<String> searchKeys = nameController.text.split(" ");
+                items.addAll(searchKeys);
                 Navigator.pushNamed(context, CustomerHome.id);}
               else{
                 final snackBar = SnackBar(content: Text('Enter Item Name First'));

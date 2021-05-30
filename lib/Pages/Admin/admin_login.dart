@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 
 class AdminLogin extends StatelessWidget {
+  final TextEditingController passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   static const String id = 'login';
   @override
   Widget build(BuildContext context) {
@@ -40,13 +43,24 @@ class AdminLogin extends StatelessWidget {
               onChanged: (value) {
                 //Get user's input
               },
+              controller: passwordController,
               decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Enter Your Password'),
             ),
             RoundButton(
               title: 'Log In',
-              onPressed: () {
-                Navigator.pushNamed(context, AdminHome.id);
+              onPressed: () async {
+                try {
+                  final user = await _auth.signInWithEmailAndPassword(
+                      email: 'admin@smartshopping.com',
+                      password: passwordController.text);
+                  if (user != null)
+                    Navigator.pushNamed(context, AdminHome.id);
+                } on FirebaseAuthException catch (e) {
+                  final snackBar = SnackBar(content: Text('Invalid Password'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  return e.message;
+                }
               },
             ),
           ],

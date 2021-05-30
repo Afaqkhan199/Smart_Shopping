@@ -64,6 +64,13 @@ class _VendorAddProductState extends State<VendorAddLed> {
   final TextEditingController priceController = TextEditingController();
 
   addData()  async{
+    String lowerCase = nameController.text.toLowerCase();
+    String upperCase = nameController.text.toUpperCase();
+    List<String> normalSplit = nameController.text.split(" ");
+    List<String> upperSplit = upperCase.split(" ");
+    List<String> lowerSplit = lowerCase.split(" ");
+    List<String> searchKey = normalSplit + upperSplit + lowerSplit;
+
     await uploadPic();
     String smartTv;
     if(_android.toString() == "Android.N"){
@@ -82,7 +89,8 @@ class _VendorAddProductState extends State<VendorAddLed> {
       "android": smartTv,
       "price": priceController.text,
       "vendorEmail": getCurrentUserEmail(),
-      "imageURL" : imgURL
+      "imageURL" : imgURL,
+      "keywords" : searchKey,
     };
 
     CollectionReference collectionReference =

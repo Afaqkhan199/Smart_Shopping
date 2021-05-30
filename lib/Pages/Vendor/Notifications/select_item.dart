@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/show_product.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/show_products.dart';
 
 class SelectItem extends StatefulWidget {
   static const String id = 'select_item';
@@ -18,6 +20,7 @@ class _SelectItemState extends State<SelectItem> {
             style: kAppBarTitleTextStyle,
           ),
         ),
+      body: ShowProducts(),
     );
   }
 }

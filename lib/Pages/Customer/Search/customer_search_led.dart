@@ -1,30 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
+import 'package:fyp_smart_shopping/components/text_area.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'dart:io';
-import 'customer_home.dart';
+import '../customer_home.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/search_classes.dart';
 
-class CustomerSearchCard extends StatefulWidget {
-  static const String id = 'customer_search_card';
+class CustomerSearchLed extends StatefulWidget {
+  static const String id = 'customer_search_led';
   @override
-  _CustomerSearchCardState createState() => _CustomerSearchCardState();
+  _CustomerSearchLedState createState() => _CustomerSearchLedState();
 }
 
-class _CustomerSearchCardState extends State<CustomerSearchCard> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController modelController = TextEditingController();
-  final TextEditingController ramController = TextEditingController();
+var LED = new SearchLED();
+
+class _CustomerSearchLedState extends State<CustomerSearchLed> {
+  Android _android = Android.N;
 
   final _auth = FirebaseAuth.instance;
   String userEmail;
   String getCurrentUserEmail() {
     return userEmail = _auth.currentUser.email;
   }
+
+  final TextEditingController nameController = TextEditingController();
 
   String newProductCategory;
   @override
@@ -33,7 +38,7 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
         title: Text(
-          'Add Graphic Card',
+          'Add LED',
           style: kAppBarTitleTextStyle,
         ),
       ),
@@ -50,19 +55,19 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
             ),
             TextBox(hnt: 'Enter product name', textController: nameController),
             SizedBox(
-              height: 10,
+              height: 15,
             ),
             Row(
               children: <Widget>[
                 Text(
-                  'Model',
+                  'Size (in inches)',
                   style: kFormTextStyle,
                 ),
                 SizedBox(
-                  width: 151,
+                  width: 67,
                 ),
                 Text(
-                  'RAM',
+                  'Resolution',
                   style: kFormTextStyle,
                 ),
               ],
@@ -74,7 +79,7 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
                     dropdownColor: Colors.white,
                     iconEnabledColor: Colors.deepOrangeAccent,
                     iconSize: 30,
-                    items: _TypeCategories.map((String dropDownStringItem) {
+                    items: _SizeCategories.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         value: dropDownStringItem,
                         child: Text(
@@ -89,22 +94,22 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
                     onChanged: (String newValue) {
                       setState(
                         () {
-                          // this._TypeSelectedCategory = newValue;
+                          _SizeSelectedCategory = newValue;
                         },
                       );
                     },
-                    value: _TypeSelectedCategory,
+                    value: _SizeSelectedCategory,
                   ),
                 ),
                 SizedBox(
-                  width: 40,
+                  width: 20,
                 ),
                 Expanded(
                   child: DropdownButton<String>(
                     dropdownColor: Colors.white,
                     iconEnabledColor: Colors.deepOrangeAccent,
                     iconSize: 30,
-                    items: _RamCategories.map((String dropDownStringItem) {
+                    items: _ResCategories.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         value: dropDownStringItem,
                         child: Text(
@@ -119,29 +124,77 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
                     onChanged: (String newValue) {
                       setState(
                         () {
-                          // this._RamSelectedCategory = newValue;
+                          _ResSelectedCategory = newValue;
                         },
                       );
                     },
-                    value: _RamSelectedCategory,
+                    value: _ResSelectedCategory,
                   ),
                 ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Text(
+                  'Android',
+                  style: kFormTextStyle,
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Radio(
+                  value: Android.N,
+                  groupValue: _android,
+                  onChanged: (Android value) {
+                    setState(
+                      () {
+                        _android = value;
+                      },
+                    );
+                  },
+                ),
+                const Text('No'),
+                Radio(
+                  value: Android.Y,
+                  groupValue: _android,
+                  onChanged: (Android value) {
+                    setState(
+                      () {
+                        _android = value;
+                      },
+                    );
+                  },
+                ),
+                const Text('Yes'),
               ],
             ),
             SizedBox(
-              height: 50,
+              height: 20,
             ),
             RoundButton(
-              title: 'Add item to list',onPressed: () {
-              if(nameController.text!=""){
-                items.add(nameController.text);
+              title: 'Add item to list',
+              onPressed: () {
+                if(nameController.text!=""){
+                  SearchKeywords.add(nameController.text);
+                  LED.title = nameController.text;
+                  LED.size = _SizeSelectedCategory;
+                  if(_android.toString() == "Android.N"){
+                    LED.android = "No";
+                  }
+                  else{
+                    LED.android = "Yes";
+                  }
+                  LED.resolution = _ResSelectedCategory;
+                  ProductObjects.add(LED);
+                  List<String> searchKeys = nameController.text.split(" ");
+                  items.addAll(searchKeys);
                 Navigator.pushNamed(context, CustomerHome.id);}
-              else{
-                final snackBar = SnackBar(content: Text('Enter Item Name First'));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
-              //print('Add to list');
-            },
+                else{
+                  final snackBar = SnackBar(content: Text('Enter Item Name First'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+                //print('Add to list');
+              },
             ),
           ],
         ),
@@ -150,8 +203,9 @@ class _CustomerSearchCardState extends State<CustomerSearchCard> {
   }
 }
 
-var _TypeCategories = ['GTX1650', 'RTX3070', 'RTX3090'];
-var _TypeSelectedCategory = 'GTX1650';
+var _SizeCategories = ['16', '32', '40'];
+var _SizeSelectedCategory = '16';
 
-var _RamCategories = ['4GB', '8GB', '12GB'];
-var _RamSelectedCategory = '4GB';
+var _ResCategories = ['720p', '1080p', '4k'];
+var _ResSelectedCategory = '720p';
+enum Android { Y, N }

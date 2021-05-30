@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/notification_details.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_login.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/admin_notifications.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/grid_test.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/customer_search_card.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/customer_search_led.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/customer_search_charger.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_card.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/change_description.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_change_password.dart';
@@ -22,10 +25,10 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_charger.dart
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_card.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/search_results.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/search_results.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
-import 'package:fyp_smart_shopping/Pages/Vendor/notification_page.dart';
-import 'package:fyp_smart_shopping/Pages/Vendor/select_item.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/notification_page.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/select_item.dart';
 
 import 'package:fyp_smart_shopping/Services/auth.dart';
 
@@ -66,7 +69,10 @@ class SmartShopping extends StatelessWidget {
         cart.id: (context) => cart(),
         notification.id: (context) => notification(),
         SelectItem.id: (context) => SelectItem(),
-      },
+        NotificationApproval.id: (context) => NotificationApproval(),
+        NotificationDetails.id: (context) => NotificationDetails(),
+        HomePage.id: (context) => HomePage(),
+       },
     );
   }
 }

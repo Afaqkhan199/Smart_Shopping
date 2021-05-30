@@ -7,8 +7,8 @@ import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
-import 'package:fyp_smart_shopping/Pages/Vendor/notification_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/notification_page.dart';
 
 class VendorHome extends StatelessWidget {
   String getEmail() {

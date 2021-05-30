@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/admin_notifications.dart';
 
 class AdminHome extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   static const String id = 'admin_home';
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class AdminHome extends StatelessWidget {
             children: <Widget>[
               DrawerHeader(
                 child: Text(
-                  'Admin' + 'User_Name',
+                  'SmartShopping Admin',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -46,6 +50,13 @@ class AdminHome extends StatelessWidget {
                 },
               ),
               ListTile(
+                title: Text('Notifications'),
+                onTap: () {
+                  // Navigator.pop(context);
+                  Navigator.pushNamed(context, NotificationApproval.id);
+                },
+              ),
+              ListTile(
                 selectedTileColor: Colors.deepOrangeAccent,
                 title: Text('History/Reports'),
                 onTap: () {
@@ -55,9 +66,9 @@ class AdminHome extends StatelessWidget {
               ),
               ListTile(
                 title: Text('Logout'),
-                onTap: () {
-                  // Navigator.pop(context);
-                  //context.read<AuthService>().signOut();
+                onTap: () async {
+                  await _auth.signOut();
+                  Navigator.pushNamed(context, Welcome.id);
                 },
               ),
             ],
