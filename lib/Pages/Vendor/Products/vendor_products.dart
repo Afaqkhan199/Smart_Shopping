@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/all_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_card.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_led.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_phone.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_charger.dart';
@@ -89,6 +90,10 @@ class _VendorProductsState extends State<VendorProducts> {
                         Navigator.pushNamed(context, VendorAddCard.id);
                       else if (_selectedCategory == 'Charger')
                         Navigator.pushNamed(context, VendorAddCharger.id);
+                      else if (_selectedCategory == 'General')
+                        print('');
+                      else if (_selectedCategory == 'Mobile')
+                        Navigator.pushNamed(context, VendorAddPhone.id);
                       else
                         print(_selectedCategory);
                       //Check category, show respective interface
@@ -116,5 +121,5 @@ class _VendorProductsState extends State<VendorProducts> {
   }
 }
 
-var _categories = ['All', 'LED', 'Graphic Card', 'Charger'];
-var _selectedCategory = 'All';
+var _categories = ['General', 'LED', 'Graphic Card', 'Charger', 'Mobile'];
+var _selectedCategory = 'General';

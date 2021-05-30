@@ -10,6 +10,7 @@ import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_charger.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_phone.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/change_description.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_change_password.dart';
@@ -59,6 +60,7 @@ class SmartShopping extends StatelessWidget {
         VendorAddCard.id: (context) => VendorAddCard(),
         VendorAddLed.id: (context) => VendorAddLed(),
         VendorAddCharger.id: (context) => VendorAddCharger(),
+        VendorAddPhone.id: (context) => VendorAddPhone(),
         //VendorAddProduct.id: (context) => VendorAddProduct(),
         ChatDetailPage.id: (context) => ChatDetailPage(),
         CustomerSearchLed.id: (context) => CustomerSearchLed(),
@@ -72,7 +74,7 @@ class SmartShopping extends StatelessWidget {
         NotificationApproval.id: (context) => NotificationApproval(),
         NotificationDetails.id: (context) => NotificationDetails(),
         HomePage.id: (context) => HomePage(),
-       },
+      },
     );
   }
 }
