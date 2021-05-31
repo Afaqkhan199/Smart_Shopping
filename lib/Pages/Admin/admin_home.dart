@@ -65,14 +65,14 @@ class AdminHome extends StatelessWidget {
                   Navigator.pushNamed(context, NotificationApproval.id);
                 },
               ),
-              ListTile(
-                selectedTileColor: Colors.deepOrangeAccent,
-                title: Text('History/Reports'),
-                onTap: () {
+              //ListTile(
+                //selectedTileColor: Colors.deepOrangeAccent,
+               // title: Text('History/Reports'),
+               // onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, AdminHome.id);
-                },
-              ),
+                 // Navigator.pushNamed(context, AdminHome.id);
+                //},
+             // ),
               ListTile(
                 title: Text('Logout'),
                 onTap: () async {
