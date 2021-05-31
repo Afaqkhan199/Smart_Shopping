@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/all_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_card.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_general.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_led.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_phone.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -91,7 +92,7 @@ class _VendorProductsState extends State<VendorProducts> {
                       else if (_selectedCategory == 'Charger')
                         Navigator.pushNamed(context, VendorAddCharger.id);
                       else if (_selectedCategory == 'General')
-                        print('');
+                        Navigator.pushNamed(context, VendorAddGeneral.id);
                       else if (_selectedCategory == 'Mobile')
                         Navigator.pushNamed(context, VendorAddPhone.id);
                       else

@@ -10,6 +10,9 @@ import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_charger.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_rename.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/settings.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_general.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_phone.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Settings/change_description.dart';
@@ -53,7 +56,9 @@ class SmartShopping extends StatelessWidget {
         VendorHome.id: (context) => VendorHome(),
         CustomerHome.id: (context) => CustomerHome(),
         VendorSettings.id: (context) => VendorSettings(),
+        CustomerSettings.id: (context) => CustomerSettings(),
         VendorRename.id: (context) => VendorRename(),
+        CustomerRename.id: (context) => CustomerRename(),
         ChangeDescription.id: (context) => ChangeDescription(),
         VendorChangePassword.id: (context) => VendorChangePassword(),
         VendorProducts.id: (context) => VendorProducts(),
@@ -61,6 +66,7 @@ class SmartShopping extends StatelessWidget {
         VendorAddLed.id: (context) => VendorAddLed(),
         VendorAddCharger.id: (context) => VendorAddCharger(),
         VendorAddPhone.id: (context) => VendorAddPhone(),
+        VendorAddGeneral.id: (context) => VendorAddGeneral(),
         //VendorAddProduct.id: (context) => VendorAddProduct(),
         ChatDetailPage.id: (context) => ChatDetailPage(),
         CustomerSearchLed.id: (context) => CustomerSearchLed(),

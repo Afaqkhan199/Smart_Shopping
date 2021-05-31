@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/settings.dart';
 import 'package:fyp_smart_shopping/Pages/show_product.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
@@ -24,7 +25,6 @@ String getEmail() {
   return user.email.toString();
 }
 
-
 Widget getPrducts() {
   return Column(
     children: [
@@ -45,16 +45,13 @@ List<String> items = [];
 List<String> SearchKeywords = [];
 List ProductObjects = [];
 
-
 class CustomerHome extends StatefulWidget {
-
   static const String id = 'customer_home';
   @override
   _CustomerHomeState createState() => _CustomerHomeState();
 }
 
 class _CustomerHomeState extends State<CustomerHome> {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Widget myColumn = Column(
     children: [
@@ -115,8 +112,9 @@ class _CustomerHomeState extends State<CustomerHome> {
               ),
               ListTile(
                 title: Text('Settings'),
-                onTap: () async {
-
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, CustomerSettings.id);
                 },
               ),
               ListTile(
@@ -211,8 +209,8 @@ class _CustomerHomeState extends State<CustomerHome> {
                 onPressed: () {
                   //ProductObjects.clear();
                   print(ProductObjects.length);
-                  if(SearchKeywords.isNotEmpty)
-                  Navigator.pushNamed(context, SearchResults.id);
+                  if (SearchKeywords.isNotEmpty)
+                    Navigator.pushNamed(context, SearchResults.id);
                 },
               ),
               Text(
@@ -222,28 +220,28 @@ class _CustomerHomeState extends State<CustomerHome> {
               Text(
                 '---------------------------------------------------------------------------------------------',
               ),
-              Expanded(child: ListView.builder(
-                itemCount: SearchKeywords.length,
-                itemBuilder: (context, index){
-                  return Row(
-                    children: <Widget>[
-                      Expanded(child:
-                          ListTile(
-                            title: Text(SearchKeywords[index]),
-                          )
-                          ),
-                          Spacer(),
-                          IconButton(
-                              icon: new Icon(Icons.cancel_outlined),
-                              onPressed: (){
-                                SearchKeywords.removeAt(index);
-                                setState(() {});
-                              },
-                          ),
-                    ],
-                  );
-                },
-              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: SearchKeywords.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: ListTile(
+                          title: Text(SearchKeywords[index]),
+                        )),
+                        Spacer(),
+                        IconButton(
+                          icon: new Icon(Icons.cancel_outlined),
+                          onPressed: () {
+                            SearchKeywords.removeAt(index);
+                            setState(() {});
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           ),

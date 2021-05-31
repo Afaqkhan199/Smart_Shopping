@@ -18,19 +18,24 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPassword = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Users _user = Users.Customer;
 
-
-  addData(){
-    Map<String,dynamic> productData = {"email" : emailController.text,
-      "type" : _user.toString(),
-      "name" : nameController.text
+  addData() {
+    Map<String, dynamic> productData = {
+      "email": emailController.text,
+      "type": _user.toString(),
+      "name": nameController.text,
+      "phone": phoneController.text,
+      "address": addressController.text,
     };
 
-    CollectionReference collectionReference = FirebaseFirestore.instance.collection('users');
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('users');
     collectionReference.add(productData);
   }
 
@@ -68,6 +73,26 @@ class _RegisterState extends State<Register> {
                 //Get user's input
               },
               decoration: kTextFieldDecoration.copyWith(hintText: 'Email'),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            TextField(
+              controller: phoneController,
+              onChanged: (value) {
+                //Get user's input
+              },
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Phone'),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            TextField(
+              controller: addressController,
+              onChanged: (value) {
+                //Get user's input
+              },
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Address'),
             ),
             SizedBox(
               height: 10.0,
@@ -125,14 +150,15 @@ class _RegisterState extends State<Register> {
                 const Text('Vendor'),
               ],
             ),
-            RoundButton (
+            RoundButton(
               title: 'Register',
               onPressed: () async {
-                if(passwordController.text == confirmPassword.text){
+                if (passwordController.text == confirmPassword.text) {
                   try {
                     print("Register pressed");
                     await _auth.createUserWithEmailAndPassword(
-                        email: emailController.text, password: passwordController.text);
+                        email: emailController.text,
+                        password: passwordController.text);
                     addData();
                     print("Signed Up");
                   } on FirebaseAuthException catch (e) {

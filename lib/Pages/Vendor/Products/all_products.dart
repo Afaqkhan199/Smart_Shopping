@@ -8,6 +8,9 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/update_product.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/vendor_home.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import 'general.dart';
+import 'mobile.dart';
+
 class AllProducts extends StatelessWidget {
   FirebaseStorage _storage = FirebaseStorage.instance;
   final String ve = VendorHome().getEmail();
@@ -53,6 +56,20 @@ class AllProducts extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => ChargerDetails(document),
+            ),
+          );
+        else if (document.data()['category'] == 'General')
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GeneralDetails(document),
+            ),
+          );
+        else if (document.data()['category'] == 'Mobile')
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MobileDetails(document),
             ),
           );
         else if (document.data()['category'] == 'Graphics Card')
