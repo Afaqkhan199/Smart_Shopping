@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/order_details.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/notification_details.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Vendors%20List/adminVendors.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_login.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/admin_notifications.dart';
@@ -76,6 +78,8 @@ class SmartShopping extends StatelessWidget {
         NotificationDetails.id: (context) => NotificationDetails(),
         HomePage.id: (context) => HomePage(),
         AdminOrders.id: (context) => AdminOrders(),
+        OrderDetails.id: (context) => OrderDetails(),
+        AdminVendors.id: (context) => AdminVendors(),
        },
     );
   }

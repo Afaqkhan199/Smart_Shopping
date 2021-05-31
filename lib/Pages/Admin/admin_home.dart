@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/adminOrders.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Vendors%20List/adminVendors.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -54,7 +55,7 @@ class AdminHome extends StatelessWidget {
                 title: Text('Vendors'),
                 onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, AdminHome.id);
+                  Navigator.pushNamed(context, AdminVendors.id);
                 },
               ),
               ListTile(
