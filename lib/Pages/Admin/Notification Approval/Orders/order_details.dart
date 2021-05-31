@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 
-class cart extends StatefulWidget {
-  static const String id = 'cart';
+class OrderDetails extends StatefulWidget {
+  const OrderDetails({Key key}) : super(key: key);
+  static const String id = 'order_details';
   @override
-  _cartState createState() => _cartState();
+  _OrderDetailsState createState() => _OrderDetailsState();
 }
 
-class _cartState extends State<cart> {
+class _OrderDetailsState extends State<OrderDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
         title: Text(
-          'Cart',
+          'Order Details',
           style: kAppBarTitleTextStyle,
         ),
       ),
-
     );
   }
 }

@@ -5,6 +5,9 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/led.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/graphic_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/charger_customer.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/led_customer.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/graphic_card_customer.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
 
@@ -62,21 +65,21 @@ class _SearchLogicState extends State<SearchLogic> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ChargerDetails(document),
+              builder: (context) => CustomerChargerDetails(document),
             ),
           );
         else if (document.data()['category'] == 'Graphics Card')
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CardDetails(document),
+              builder: (context) => CustomerCardDetails(document),
             ),
           );
         else if (document.data()['category'] == 'LED')
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => LedDetails(document),
+              builder: (context) => CustomerLedDetails(document),
             ),
           );
         else

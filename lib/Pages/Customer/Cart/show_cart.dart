@@ -7,17 +7,30 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/graphic_card.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/update_product.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/vendor_home.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
-import 'general.dart';
-import 'mobile.dart';
 
-class AllProducts extends StatelessWidget {
+List<DocumentSnapshot> documents;
+int price1;
+
+
+
+void addDocumentstoList(DocumentSnapshot document){
+      documents.add(document);
+}
+
+
+
+
+class CartProducts extends StatelessWidget {
   FirebaseStorage _storage = FirebaseStorage.instance;
-  final String ve = VendorHome().getEmail();
+  final String ve = getEmail();
   @override
   Widget build(BuildContext context) {
+    documents = [];
+    price1 = 0;
     CollectionReference products =
-        FirebaseFirestore.instance.collection('products');
+    FirebaseFirestore.instance.collection('cart');
     return StreamBuilder<QuerySnapshot>(
       stream: products.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -34,7 +47,9 @@ class AllProducts extends StatelessWidget {
 
         return new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
-            if (document.data()['vendorEmail'] == ve) {
+            if (document.data()['customerEmail'] == ve) {
+              price1 = price1 + int.parse(document.data()['price']);
+              documents.add(document);
               return tile(document, context);
             } else {
               return Container(
@@ -56,20 +71,6 @@ class AllProducts extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => ChargerDetails(document),
-            ),
-          );
-        else if (document.data()['category'] == 'General')
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => GeneralDetails(document),
-            ),
-          );
-        else if (document.data()['category'] == 'Mobile')
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MobileDetails(document),
             ),
           );
         else if (document.data()['category'] == 'Graphics Card')
@@ -98,8 +99,8 @@ class AllProducts extends StatelessWidget {
             actions: <Widget>[
               FlatButton(
                 onPressed: () {
-                  final snackBar = SnackBar(content: Text('Your Order has been placed.'));
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  removeProduct(document);
+                  Navigator.of(context).pop();
                 },
                 child: Text('Yes'),
               ),
@@ -114,22 +115,14 @@ class AllProducts extends StatelessWidget {
         );
       },
       trailing: IconButton(
-        icon: new Icon(Icons.edit),
+        icon: new Icon(Icons.cancel_outlined),
         onPressed: () {
-          String cat = document.data()['category'];
-          UpdateProduct up = new UpdateProduct(doc: document);
-          if (cat == 'LED') {
-            up.updateLed();
-          } else if (cat == 'Charger') {
-            up.updateCharger();
-          } else if (cat == 'Graphic card') {
-            up.updateCard();
-          }
+          removeProduct(document);
         },
       ),
       leading: document.data()['imageURL'] == null
           ? Image.network(
-              'https://firebasestorage.googleapis.com/v0/b/smartshopping-979f9.appspot.com/o/images%2FNo_Image_Available.jpg?alt=media&token=d109c767-611b-4cf4-a55f-4e0ad304f4c5')
+          'https://firebasestorage.googleapis.com/v0/b/smartshopping-979f9.appspot.com/o/images%2FNo_Image_Available.jpg?alt=media&token=d109c767-611b-4cf4-a55f-4e0ad304f4c5')
           : Image.network(document.data()['imageURL']),
       title: new Text(document.data()['title']),
       subtitle: new Text(document.data()['price']),

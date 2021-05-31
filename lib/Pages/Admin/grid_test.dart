@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Cart/cart.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Order/order_view.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 

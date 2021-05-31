@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/adminOrders.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Vendors%20List/adminVendors.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -36,6 +38,13 @@ class AdminHome extends StatelessWidget {
                 },
               ),
               ListTile(
+                title: Text('Orders'),
+                onTap: () {
+                  // Navigator.pop(context);
+                  Navigator.pushNamed(context, AdminOrders.id);
+                },
+              ),
+              ListTile(
                 title: Text('Chat'),
                 onTap: () {
                   // Navigator.pop(context);
@@ -46,7 +55,7 @@ class AdminHome extends StatelessWidget {
                 title: Text('Vendors'),
                 onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, AdminHome.id);
+                  Navigator.pushNamed(context, AdminVendors.id);
                 },
               ),
               ListTile(
@@ -56,14 +65,14 @@ class AdminHome extends StatelessWidget {
                   Navigator.pushNamed(context, NotificationApproval.id);
                 },
               ),
-              ListTile(
-                selectedTileColor: Colors.deepOrangeAccent,
-                title: Text('History/Reports'),
-                onTap: () {
+              //ListTile(
+                //selectedTileColor: Colors.deepOrangeAccent,
+               // title: Text('History/Reports'),
+               // onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, AdminHome.id);
-                },
-              ),
+                 // Navigator.pushNamed(context, AdminHome.id);
+                //},
+             // ),
               ListTile(
                 title: Text('Logout'),
                 onTap: () async {

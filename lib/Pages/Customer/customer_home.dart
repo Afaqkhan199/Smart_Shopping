@@ -11,9 +11,9 @@ import 'package:fyp_smart_shopping/Services/flutter_chat.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_charger.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/order_view.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Order/order_view.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/search_results.dart';
-import 'package:fyp_smart_shopping/Pages/Customer/cart.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Cart/cart.dart';
 // var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
 // Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
