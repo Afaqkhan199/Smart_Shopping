@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 import 'package:image_picker/image_picker.dart';
@@ -256,8 +257,18 @@ class _VendorAddProductState extends State<VendorAddCharger> {
             RoundButton(
               title: 'Save',
               onPressed: () {
-                uploadData();
-                print('Save data to firebase');
+                if(nameController.text!="" && descriptionController.text!="" && priceController.text!=""){
+                  uploadData();
+                  print('Save data to firebase');
+                  final snackBar = SnackBar(content: Text('Uploading...'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  Navigator.pushNamed(context, VendorProducts.id);
+                }
+                else{
+                  final snackBar = SnackBar(content: Text('Enter all details'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+
               },
             ),
           ],

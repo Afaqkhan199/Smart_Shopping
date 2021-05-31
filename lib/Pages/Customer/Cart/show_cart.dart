@@ -9,6 +9,18 @@ import 'package:fyp_smart_shopping/Pages/Vendor/vendor_home.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
+
+List<DocumentSnapshot> documents = [];
+List<String> urls = [];
+
+
+void addDocumentstoList(DocumentSnapshot document){
+      documents.add(document);
+}
+
+
+
+
 class CartProducts extends StatelessWidget {
   FirebaseStorage _storage = FirebaseStorage.instance;
   final String ve = getEmail();
@@ -33,6 +45,7 @@ class CartProducts extends StatelessWidget {
         return new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
             if (document.data()['customerEmail'] == ve) {
+              addDocumentstoList(document);
               return tile(document, context);
             } else {
               return Container(

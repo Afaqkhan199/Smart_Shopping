@@ -81,8 +81,8 @@ class AllProducts extends StatelessWidget {
             actions: <Widget>[
               FlatButton(
                 onPressed: () {
-                  removeProduct(document);
-                  Navigator.of(context).pop();
+                  final snackBar = SnackBar(content: Text('Your Order has been placed.'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Text('Yes'),
               ),
