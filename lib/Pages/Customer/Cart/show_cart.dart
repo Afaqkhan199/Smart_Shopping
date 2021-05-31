@@ -10,8 +10,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
 
-List<DocumentSnapshot> documents = [];
-List<String> urls = [];
+List<DocumentSnapshot> documents;
+int price1;
+
 
 
 void addDocumentstoList(DocumentSnapshot document){
@@ -26,6 +27,8 @@ class CartProducts extends StatelessWidget {
   final String ve = getEmail();
   @override
   Widget build(BuildContext context) {
+    documents = [];
+    price1 = 0;
     CollectionReference products =
     FirebaseFirestore.instance.collection('cart');
     return StreamBuilder<QuerySnapshot>(
@@ -45,7 +48,8 @@ class CartProducts extends StatelessWidget {
         return new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
             if (document.data()['customerEmail'] == ve) {
-              addDocumentstoList(document);
+              price1 = price1 + int.parse(document.data()['price']);
+              documents.add(document);
               return tile(document, context);
             } else {
               return Container(

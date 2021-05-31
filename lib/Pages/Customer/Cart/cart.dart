@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Cart/show_cart.dart';
@@ -9,11 +10,6 @@ class cart extends StatefulWidget {
   _cartState createState() => _cartState();
 }
 
-void calcBill(){
-  for(int i=0;i<documents.length;i++){
-    price1 = price1 + int.parse(documents[i].data()['price']);
-  }
-}
 
 class _cartState extends State<cart> {
   @override
@@ -35,7 +31,6 @@ class _cartState extends State<cart> {
             child: RoundButton(
               title: "Request Delivery",
               onPressed: (){
-                calcBill();
                 print(documents.length);
                 showDialog(
                   context: context,
@@ -45,6 +40,7 @@ class _cartState extends State<cart> {
                     actions: <Widget>[
                       FlatButton(
                         onPressed: () {
+
                           final snackBar = SnackBar(content: Text('Your order has been placed.'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           Navigator.of(context).pop();
