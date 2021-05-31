@@ -76,7 +76,7 @@ class ViewVendors extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                 child: Row(
                   children: <Widget>[
-                    Text("Status: " + snapshot.data()['status']),
+                    Text("Address"),
                     Spacer(),
                     Icon(Icons.beenhere_outlined),
                   ],
