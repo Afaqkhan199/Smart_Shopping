@@ -64,7 +64,9 @@ class _cartState extends State<cart> {
                               "OrderID" : "10032",
                               "OrderTime" : DateTime.now(),
                               "VendorAddress" : "Shop G13, F10, Islamabad",
-                              "CustomerAddress" : "House 229B, F8/2, Islamabad"
+                              "CustomerAddress" : "House 229B, F8/2, Islamabad",
+                              "status" : "Placed",
+                              "NoOfItems" : documents.length.toString(),
                           };
                             collectionReference.add(itemDetails);
 
