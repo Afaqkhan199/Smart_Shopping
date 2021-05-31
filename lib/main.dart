@@ -30,6 +30,7 @@ import 'package:fyp_smart_shopping/Pages/Customer/Search/search_results.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Cart/cart.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/notification_page.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Notifications/select_item.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification Approval/Orders/adminOrders.dart';
 
 import 'package:fyp_smart_shopping/Services/auth.dart';
 
@@ -74,7 +75,8 @@ class SmartShopping extends StatelessWidget {
         NotificationApproval.id: (context) => NotificationApproval(),
         NotificationDetails.id: (context) => NotificationDetails(),
         HomePage.id: (context) => HomePage(),
-      },
+        AdminOrders.id: (context) => AdminOrders(),
+       },
     );
   }
 }
