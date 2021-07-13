@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_phone.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/settings.dart';
 import 'package:fyp_smart_shopping/Pages/show_product.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
@@ -14,6 +15,8 @@ import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_charger
 import 'package:fyp_smart_shopping/Pages/Customer/Order/order_view.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/search_results.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Cart/cart.dart';
+
+import 'Search/cutomer_search_general.dart';
 // var _categories = ['All', 'Cloths', 'Shoes', 'Bags', 'Glasses'];
 
 // Product p1 = Product('Candy', 'T shirt Description', '1500', '15');
@@ -193,6 +196,11 @@ class _CustomerHomeState extends State<CustomerHome> {
                         else if (_selectedCategory == 'Charger')
                           Navigator.pushNamed(
                               context, CustomerSearchCharger.id);
+                        else if (_selectedCategory == 'Mobile')
+                          Navigator.pushNamed(context, CustomerSearchPhone.id);
+                        else if (_selectedCategory == 'General')
+                          Navigator.pushNamed(
+                              context, CustomerSearchGeneral.id);
                         else
                           print(_selectedCategory);
                         //Check category, show respective interface
@@ -251,5 +259,5 @@ class _CustomerHomeState extends State<CustomerHome> {
   }
 }
 
-var _categories = ['All', 'LED', 'Graphic Card', 'Charger'];
-var _selectedCategory = 'All';
+var _categories = ['General', 'LED', 'Graphic Card', 'Charger', 'Mobile'];
+var _selectedCategory = 'General';

@@ -8,6 +8,8 @@ import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_login.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/admin_notifications.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/grid_test.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_phone.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/cutomer_search_general.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
@@ -75,6 +77,8 @@ class SmartShopping extends StatelessWidget {
         CustomerSearchLed.id: (context) => CustomerSearchLed(),
         CustomerSearchCharger.id: (context) => CustomerSearchCharger(),
         CustomerSearchCard.id: (context) => CustomerSearchCard(),
+        CustomerSearchPhone.id: (context) => CustomerSearchPhone(),
+        CustomerSearchGeneral.id: (context) => CustomerSearchGeneral(),
         OrderView.id: (context) => OrderView(),
         SearchResults.id: (context) => SearchResults(),
         cart.id: (context) => cart(),
@@ -86,7 +90,7 @@ class SmartShopping extends StatelessWidget {
         AdminOrders.id: (context) => AdminOrders(),
         OrderDetails.id: (context) => OrderDetails(),
         AdminVendors.id: (context) => AdminVendors(),
-       },
+      },
     );
   }
 }
