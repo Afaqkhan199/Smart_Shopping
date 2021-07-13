@@ -74,6 +74,8 @@ class _notificationState extends State<notification> {
                 onPressed:(){
                   if(prodName!='No Product Selected' && NotificationText.text!=""){
                     addData();
+                    final snackBar = SnackBar(content: Text('Request Sent'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     print("approval pressed!");}
                   else{
                     final snackBar = SnackBar(content: Text('Select Item and Enter Text First'));

@@ -5,10 +5,10 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
 
-TextEditingController newName = TextEditingController();
-String currentName = '';
+TextEditingController newLocation = TextEditingController();
+String currentLocation = '';
 
-void renameUser(){
+void changeLocation(){
   FirebaseStorage _storage = FirebaseStorage.instance;
   FirebaseFirestore.instance
       .collection('users')
@@ -16,13 +16,12 @@ void renameUser(){
       .then((QuerySnapshot querySnapshot) {
     querySnapshot.docs.forEach((doc) {
       if(doc.data()['email'] == ve){
-        doc.reference.update({'name': newName.text});
+        doc.reference.update({'address': newLocation.text});
       }
     });
-  });
-}
+  });}
 
-void getCurrentName(){
+void getCurrentLocation(){
   FirebaseStorage _storage = FirebaseStorage.instance;
   FirebaseFirestore.instance
       .collection('users')
@@ -30,24 +29,23 @@ void getCurrentName(){
       .then((QuerySnapshot querySnapshot) {
     querySnapshot.docs.forEach((doc) {
       if(doc.data()['email'] == ve){
-        currentName = doc.data()['name'];
+        currentLocation = doc.data()['address'];
       }
     });
   });
 }
 
-
-class VendorRename extends StatefulWidget {
-  static const String id = 'vendor_rename';
+class UpdateLocation extends StatefulWidget {
+  static const String id = 'change_address';
 
   @override
-  _VendorRenameState createState() => _VendorRenameState();
+  _UpdateLocationState createState() => _UpdateLocationState();
 }
 
-class _VendorRenameState extends State<VendorRename> {
+class _UpdateLocationState extends State<UpdateLocation> {
   @override
   Widget build(BuildContext context) {
-    getCurrentName();
+    getCurrentLocation();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
@@ -61,7 +59,7 @@ class _VendorRenameState extends State<VendorRename> {
         child: ListView(
           children: <Widget>[
             Text(
-              currentName,
+              currentLocation,
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.w700,
@@ -72,7 +70,7 @@ class _VendorRenameState extends State<VendorRename> {
               height: 12,
             ),
             Text(
-              '  is your current name.',
+              '  is your current address.',
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -81,10 +79,10 @@ class _VendorRenameState extends State<VendorRename> {
               height: 100,
             ),
             TextField(
-              controller: newName,
+              controller: newLocation,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
-                hintText: 'Enter a new name',
+                hintText: 'Enter a new address',
                 contentPadding: EdgeInsets.symmetric(
                   vertical: 10.0,
                   horizontal: 20.0,
@@ -102,16 +100,16 @@ class _VendorRenameState extends State<VendorRename> {
             RoundButton(
               title: 'Save',
               onPressed: () {
-                if(newName.text!=''){
-                renameUser();
-                setState(() {
-                });
-                final snackBar = SnackBar(content: Text('Renamed Successfully'));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                //Navigator.pushNamed(context, VendorSettings.id);
-                Navigator.pop(context);}
+                if(newLocation.text!=''){
+                  changeLocation();
+                  setState(() {
+                  });
+                  final snackBar = SnackBar(content: Text('Address Updated Successfully'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  //Navigator.pushNamed(context, VendorSettings.id);
+                  Navigator.pop(context);}
                 else{
-                  final snackBar = SnackBar(content: Text('Please Enter New Name'));
+                  final snackBar = SnackBar(content: Text('Please Enter Address'));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
               },
@@ -121,4 +119,5 @@ class _VendorRenameState extends State<VendorRename> {
       ),
     );
   }
-  }
+}
+
