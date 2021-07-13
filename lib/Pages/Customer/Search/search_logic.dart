@@ -1,6 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/Item%20Details/phone_customer.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/led.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/graphic_card.dart';
@@ -9,6 +10,8 @@ import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/charger_cu
 import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/led_customer.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/Item Details/graphic_card_customer.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
+
+import 'Item Details/general_customer.dart';
 
 class SearchLogic extends StatefulWidget {
   const SearchLogic({Key key}) : super(key: key);
@@ -78,6 +81,20 @@ class _SearchLogicState extends State<SearchLogic> {
             context,
             MaterialPageRoute(
               builder: (context) => CustomerLedDetails(document),
+            ),
+          );
+        else if (document.data()['category' == 'Phone'])
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CustomerPhoneDetails(document),
+            ),
+          );
+        else if (document.data()['category' == 'General'])
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CustomerGeneralDetails(document),
             ),
           );
         else

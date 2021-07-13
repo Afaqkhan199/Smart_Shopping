@@ -38,7 +38,7 @@ class _CustomerSearchLedState extends State<CustomerSearchLed> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrangeAccent,
         title: Text(
-          'Add LED',
+          'Search LED',
           style: kAppBarTitleTextStyle,
         ),
       ),
@@ -174,23 +174,23 @@ class _CustomerSearchLedState extends State<CustomerSearchLed> {
             RoundButton(
               title: 'Add item to list',
               onPressed: () {
-                if(nameController.text!=""){
+                if (nameController.text != "") {
                   SearchKeywords.add(nameController.text);
                   LED.title = nameController.text;
                   LED.size = _SizeSelectedCategory;
-                  if(_android.toString() == "Android.N"){
+                  if (_android.toString() == "Android.N") {
                     LED.android = "No";
-                  }
-                  else{
+                  } else {
                     LED.android = "Yes";
                   }
                   LED.resolution = _ResSelectedCategory;
                   ProductObjects.add(LED);
                   List<String> searchKeys = nameController.text.split(" ");
                   items.addAll(searchKeys);
-                Navigator.pushNamed(context, CustomerHome.id);}
-                else{
-                  final snackBar = SnackBar(content: Text('Enter Item Name First'));
+                  Navigator.pushNamed(context, CustomerHome.id);
+                } else {
+                  final snackBar =
+                      SnackBar(content: Text('Enter Item Name First'));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 }
                 //print('Add to list');

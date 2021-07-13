@@ -1,18 +1,26 @@
-class SearchLED{
+class SearchLED {
   String title;
   String size;
   String resolution;
   String android;
 }
 
-class SearchCard{
+class SearchCard {
   String title;
   String model;
   String ram;
 }
 
-class SearchCharger{
+class SearchCharger {
   String title;
   String type;
   String company;
+}
+
+class SearchPhone {
+  String title, camera, ram, os;
+}
+
+class SearchGeneral {
+  String title;
 }

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Customer/Search/search_classes.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
@@ -12,14 +13,25 @@ import 'package:fyp_smart_shopping/components/text_box.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../customer_home.dart';
+
 class CustomerSearchPhone extends StatefulWidget {
   static const String id = 'customer_search_phone';
   @override
   _VendorAddProductState createState() => _VendorAddProductState();
 }
 
+var Phone = new SearchPhone();
+
 class _VendorAddProductState extends State<CustomerSearchPhone> {
   OS _os = OS.Android;
+  final _auth = FirebaseAuth.instance;
+  String userEmail;
+  String getCurrentUserEmail() {
+    return userEmail = _auth.currentUser.email;
+  }
+
+  final TextEditingController nameController = TextEditingController();
 
   String newProductCategory;
   @override
@@ -43,9 +55,7 @@ class _VendorAddProductState extends State<CustomerSearchPhone> {
             SizedBox(
               height: 10,
             ),
-            TextBox(
-              hnt: 'Enter product name',
-            ), //textController: nameController),
+            TextBox(hnt: 'Enter product name', textController: nameController),
             SizedBox(
               height: 15,
             ),
@@ -154,14 +164,32 @@ class _VendorAddProductState extends State<CustomerSearchPhone> {
                 const Text('IPhone'),
               ],
             ),
-
             SizedBox(
               height: 50,
             ),
-
             RoundButton(
-              title: 'Save',
-              onPressed: () {},
+              title: 'Add item to list',
+              onPressed: () {
+                if (nameController.text != "") {
+                  SearchKeywords.add(nameController.text);
+                  Phone.title = nameController.text;
+                  Phone.camera = _CameraSelectedCategory;
+                  if (_os.toString() == "OS.Android") {
+                    Phone.os = "Android";
+                  } else {
+                    Phone.os = "IPhone";
+                  }
+                  Phone.ram = _RamSelectedCategory;
+                  ProductObjects.add(Phone);
+                  List<String> searchKeys = nameController.text.split(" ");
+                  items.addAll(searchKeys);
+                  Navigator.pushNamed(context, CustomerHome.id);
+                } else {
+                  final snackBar =
+                      SnackBar(content: Text('Enter Item Name First'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
+              },
             ),
           ],
         ),
