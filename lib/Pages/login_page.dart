@@ -114,7 +114,7 @@ class _LoginState extends State<Login> {
                 //Navigator.pushNamed(context, CustomerHome.id);
               },
             ),
-            ORWord(),
+            //ORWord(),
             GooglePath(
               flatButtonText: '', //'Sign in with Google',
               onPressed: () {

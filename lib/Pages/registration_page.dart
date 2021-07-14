@@ -161,7 +161,8 @@ class _RegisterState extends State<Register> {
                         password: passwordController.text);
                     addData();
                     print("Signed Up");
-                    final snackBar = SnackBar(content: Text('Registered Successfully'));
+                    final snackBar =
+                        SnackBar(content: Text('Registered Successfully'));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     Navigator.pop(context);
                   } on FirebaseAuthException catch (e) {
@@ -172,7 +173,7 @@ class _RegisterState extends State<Register> {
                 }
               },
             ),
-            ORWord(),
+            //ORWord(),
             GooglePath(
               flatButtonText: '', //'Sign Up with Google',
               onPressed: () {
