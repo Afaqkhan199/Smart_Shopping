@@ -30,7 +30,7 @@ class CustomerPhoneDetails extends StatelessWidget {
             height: 30,
           ),
           Text(
-            "     Type: " + doc.data()['os'],
+            "     OS: " + doc.data()['os'],
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -85,7 +85,7 @@ class CustomerPhoneDetails extends StatelessWidget {
               Map<String, dynamic> productData = {
                 "title": doc.data()['title'],
                 "description": doc.data()['description'],
-                "category": "Phone",
+                "category": "LED",
                 "camera": doc.data()['camera'],
                 "ram": doc.data()['ram'],
                 "os": doc.data()['os'],
@@ -95,6 +95,13 @@ class CustomerPhoneDetails extends StatelessWidget {
                 "customerEmail": getEmail(),
               };
               cart.add(productData);
+              Navigator.pop(context);
+              final snackBar = SnackBar(content: Text('Product Added to Cart'));
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+              //AddToCart a1 = new AddToCart();
+              //a1.imgUrl.add(doc.data()['imageURL']);
+              //a1.addFirst();
             },
           )
         ],

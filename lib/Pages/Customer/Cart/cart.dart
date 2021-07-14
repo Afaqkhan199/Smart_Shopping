@@ -11,6 +11,10 @@ class cart extends StatefulWidget {
   _cartState createState() => _cartState();
 }
 
+void clearCart(){
+
+}
+
 List<String> productTitles = [];
 List<String> productPrices = [];
 List<String> vendorEmails = [];
