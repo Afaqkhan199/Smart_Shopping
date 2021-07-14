@@ -83,14 +83,14 @@ class _SearchLogicState extends State<SearchLogic> {
               builder: (context) => CustomerLedDetails(document),
             ),
           );
-        else if (document.data()['category' == 'Phone'])
+        else if (document.data()['category'] == 'Mobile')
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => CustomerPhoneDetails(document),
             ),
           );
-        else if (document.data()['category' == 'General'])
+        else if (document.data()['category'] == 'General')
           Navigator.push(
             context,
             MaterialPageRoute(

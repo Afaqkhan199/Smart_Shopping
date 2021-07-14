@@ -30,7 +30,7 @@ class CustomerPhoneDetails extends StatelessWidget {
             height: 30,
           ),
           Text(
-            "     OS: " + doc.data()['os'],
+            "     Type: " + doc.data()['os'],
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -85,7 +85,7 @@ class CustomerPhoneDetails extends StatelessWidget {
               Map<String, dynamic> productData = {
                 "title": doc.data()['title'],
                 "description": doc.data()['description'],
-                "category": "LED",
+                "category": "Phone",
                 "camera": doc.data()['camera'],
                 "ram": doc.data()['ram'],
                 "os": doc.data()['os'],
@@ -95,10 +95,6 @@ class CustomerPhoneDetails extends StatelessWidget {
                 "customerEmail": getEmail(),
               };
               cart.add(productData);
-
-              //AddToCart a1 = new AddToCart();
-              //a1.imgUrl.add(doc.data()['imageURL']);
-              //a1.addFirst();
             },
           )
         ],

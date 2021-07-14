@@ -99,7 +99,8 @@ class _LoginState extends State<Login> {
                   else if (user != null && _user == Users.Customer)
                     Navigator.pushNamed(context, CustomerHome.id);
                 } on FirebaseAuthException catch (e) {
-                  final snackBar = SnackBar(content: Text('Invalid Email or Password'));
+                  final snackBar =
+                      SnackBar(content: Text('Invalid Email or Password'));
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   return e.message;
                 }
@@ -115,7 +116,7 @@ class _LoginState extends State<Login> {
             ),
             ORWord(),
             GooglePath(
-              flatButtonText: 'Sign in with Google',
+              flatButtonText: '', //'Sign in with Google',
               onPressed: () {
                 print('Google log in API');
               },
