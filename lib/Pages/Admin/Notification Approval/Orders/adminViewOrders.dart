@@ -15,7 +15,7 @@ void addDocumentstoList(DocumentSnapshot document) {
 }
 
 class AdminViewOrders extends StatelessWidget {
-  FirebaseStorage _storage = FirebaseStorage.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
   final String ve = getEmail();
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class AdminViewOrders extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ChargerDetails(snapshot),
+            builder: (context) => OrderDetails(doc: snapshot),
           ),
         );
       },
