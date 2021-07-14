@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/order_details.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
 List<DocumentSnapshot> documents;
@@ -56,7 +57,12 @@ class VendorViewOrders extends StatelessWidget {
     return new Container(
         child: GestureDetector(
           onTap: () {
-            //Navigator.pushNamed(context, OrderDetails.id);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OrderDetails(doc: snapshot),
+              ),
+            );
           },
           child: Card(
             child: Padding(

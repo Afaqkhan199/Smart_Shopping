@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/order_details.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/led.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/graphic_card.dart';
@@ -60,36 +61,46 @@ class FetchOrders extends StatelessWidget {
 
   Widget buildTripCard(DocumentSnapshot snapshot, BuildContext context) {
     return new Container(
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
-                child: Row(children: <Widget>[
-                  Text("Order ID: " + snapshot.data()['OrderID']),
-                  Spacer(),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 4.0, bottom: 40.0),
-                child: Row(children: <Widget>[
-                  Text(snapshot.data()['NoOfItems'] + " Items"),
-                  Spacer(),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                child: Row(
-                  children: <Widget>[
-                    Text("Status: " + snapshot.data()['status']),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OrderDetails(doc: snapshot),
+            ),
+          );
+        },
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
+                  child: Row(children: <Widget>[
+                    Text("Order ID: " + snapshot.data()['OrderID']),
                     Spacer(),
-                    Icon(Icons.beenhere_outlined),
-                  ],
+                  ]),
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 4.0, bottom: 40.0),
+                  child: Row(children: <Widget>[
+                    Text(snapshot.data()['NoOfItems'] + " Items"),
+                    Spacer(),
+                  ]),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text("Status: " + snapshot.data()['status']),
+                      Spacer(),
+                      Icon(Icons.beenhere_outlined),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

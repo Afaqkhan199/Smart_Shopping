@@ -20,7 +20,7 @@ class OrderDetails extends StatelessWidget {
           Text(
             "     Order ID: " + doc.data()['OrderID'],
             style: TextStyle(
-              color: Colors.red,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
@@ -72,7 +72,7 @@ class OrderDetails extends StatelessWidget {
           Text(
             "     Vendor Address: " + doc.data()['VendorAddress'],
             style: TextStyle(
-              color: Colors.red,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
@@ -93,7 +93,18 @@ class OrderDetails extends StatelessWidget {
           Text(
             "     Customer Address: " + doc.data()['CustomerAddress'],
             style: TextStyle(
-              color: Colors.red,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Text(
+            "     Status: " + doc.data()['status'],
+            style: TextStyle(
+              color: Colors.green,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
