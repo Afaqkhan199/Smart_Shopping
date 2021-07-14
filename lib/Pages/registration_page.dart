@@ -174,7 +174,7 @@ class _RegisterState extends State<Register> {
             ),
             ORWord(),
             GooglePath(
-              flatButtonText: 'Sign Up with Google',
+              flatButtonText: '', //'Sign Up with Google',
               onPressed: () {
                 print('Google Sign up API');
               },
