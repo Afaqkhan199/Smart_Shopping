@@ -161,7 +161,12 @@ class _RegisterState extends State<Register> {
                         password: passwordController.text);
                     addData();
                     print("Signed Up");
+                    final snackBar = SnackBar(content: Text('Registered Successfully'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    Navigator.pop(context);
                   } on FirebaseAuthException catch (e) {
+                    final snackBar = SnackBar(content: Text('Error'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     return e.message;
                   }
                 }

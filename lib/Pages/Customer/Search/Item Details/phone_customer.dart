@@ -95,6 +95,9 @@ class CustomerPhoneDetails extends StatelessWidget {
                 "customerEmail": getEmail(),
               };
               cart.add(productData);
+              Navigator.pop(context);
+              final snackBar = SnackBar(content: Text('Product Added to Cart'));
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
               //AddToCart a1 = new AddToCart();
               //a1.imgUrl.add(doc.data()['imageURL']);
