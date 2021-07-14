@@ -89,10 +89,9 @@ class SmartShopping extends StatelessWidget {
         NotificationDetails.id: (context) => NotificationDetails(),
         HomePage.id: (context) => HomePage(),
         AdminOrders.id: (context) => AdminOrders(),
-        OrderDetails.id: (context) => OrderDetails(),
+        // OrderDetails.id: (context) => OrderDetails(),
         AdminVendors.id: (context) => AdminVendors(),
-        VendorOrders.id:(context) => VendorOrders(),
-
+        VendorOrders.id: (context) => VendorOrders(),
       },
     );
   }

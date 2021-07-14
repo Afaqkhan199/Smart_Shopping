@@ -1,14 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 
-class OrderDetails extends StatefulWidget {
-  const OrderDetails({Key key}) : super(key: key);
-  static const String id = 'order_details';
-  @override
-  _OrderDetailsState createState() => _OrderDetailsState();
-}
-
-class _OrderDetailsState extends State<OrderDetails> {
+class OrderDetails extends StatelessWidget {
+  OrderDetails({this.doc});
+  final DocumentSnapshot doc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

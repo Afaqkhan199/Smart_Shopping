@@ -7,10 +7,6 @@ import 'package:fyp_smart_shopping/Pages/Vendor/Products/graphic_card.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
-
-
-
-
 class SearchTest extends StatefulWidget {
   const SearchTest({Key key}) : super(key: key);
 
@@ -20,11 +16,15 @@ class SearchTest extends StatefulWidget {
 
 class _SearchTestState extends State<SearchTest> {
   FirebaseStorage _storage = FirebaseStorage.instance;
-  CollectionReference products = FirebaseFirestore.instance.collection('products');
+  CollectionReference products =
+      FirebaseFirestore.instance.collection('products');
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: products.where('keywords', arrayContainsAny: SearchKeywords).where('category', isEqualTo: 'Graphics Card').snapshots(),//products.snapshots(),
+      stream: products
+          .where('keywords', arrayContainsAny: SearchKeywords)
+          .where('category', isEqualTo: 'Graphics Card')
+          .snapshots(), //products.snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -38,8 +38,7 @@ class _SearchTestState extends State<SearchTest> {
         }
 
         return new ListView(
-          children:
-          snapshot.data.docs.map((DocumentSnapshot document) {
+          children: snapshot.data.docs.map((DocumentSnapshot document) {
             //if (document.data()['title'].toString().contains(items[0])) {
             return inkwell(document, context);
             //}
@@ -91,7 +90,7 @@ class _SearchTestState extends State<SearchTest> {
         ),
         leading: document.data()['imageURL'] == null
             ? Image.network(
-            'https://firebasestorage.googleapis.com/v0/b/smartshopping-979f9.appspot.com/o/images%2FNo_Image_Available.jpg?alt=media&token=d109c767-611b-4cf4-a55f-4e0ad304f4c5')
+                'https://firebasestorage.googleapis.com/v0/b/smartshopping-979f9.appspot.com/o/images%2FNo_Image_Available.jpg?alt=media&token=d109c767-611b-4cf4-a55f-4e0ad304f4c5')
             : Image.network(document.data()['imageURL']),
         title: new Text(document.data()['title']),
         subtitle: new Text(document.data()['price']),
