@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/order_details.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/order_details2.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 
 List<DocumentSnapshot> documents;
@@ -37,9 +38,9 @@ class VendorViewOrders extends StatelessWidget {
 
         return new ListView(
           children: snapshot.data.docs.map((DocumentSnapshot document) {
-            String vendEmail = document.data()['vendorEmail'];
+            //String vendEmail = document.data()['vendorEmail'];
             //documents.add(document);
-            if(vendEmail == ve)
+            if(document.data()['vendorEmail'] == ve)
             return buildTripCard(document, context);
             else {
               return Container(
@@ -60,7 +61,7 @@ class VendorViewOrders extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => OrderDetails(doc: snapshot),
+                builder: (context) => OrderDetails2(doc: snapshot),
               ),
             );
           },

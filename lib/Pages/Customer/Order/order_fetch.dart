@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/order_details.dart';
+import 'package:fyp_smart_shopping/Pages/Admin/Notification%20Approval/Orders/order_details2.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/led.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/charger.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/graphic_card.dart';
@@ -66,7 +67,7 @@ class FetchOrders extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => OrderDetails(doc: snapshot),
+              builder: (context) => OrderDetails2(doc: snapshot),
             ),
           );
         },

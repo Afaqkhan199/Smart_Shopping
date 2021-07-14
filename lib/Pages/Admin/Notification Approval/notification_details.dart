@@ -56,7 +56,7 @@ class _NotificationDetailsState extends State<NotificationDetails> {
               title: "Dismiss Notification",
               onPressed: () {
                 Navigator.pop(context);
-                //Navigator.pushNamed(context, HomePage.id);
+                Navigator.pushNamed(context, HomePage.id);
                 print("test");
               },
             ),

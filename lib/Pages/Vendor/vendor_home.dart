@@ -101,54 +101,104 @@ class VendorHome extends StatelessWidget {
             'Smart Shopping',
             style: kAppBarTitleTextStyle,
           ),
-          bottom: TabBar(
-            tabs: [
-              Tab(
-                icon: Icon(Icons.autorenew),
-              ),
-              Tab(icon: Icon(Icons.check_circle)),
-              Tab(icon: Icon(Icons.directions_bike)),
-            ],
-          ),
+        //   bottom: TabBar(
+        //     tabs: [
+        //       Tab(
+        //         icon: Icon(Icons.autorenew),
+        //       ),
+        //       Tab(icon: Icon(Icons.check_circle)),
+        //       Tab(icon: Icon(Icons.directions_bike)),
+        //     ],
+        //   ),
+        // ),
+        // body: Padding(
+        //   padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+        //   child: TabBarView(
+        //     children: <ListView>[
+        //       ListView(
+        //         children: <Widget>[
+        //           // Text('Vendor here'),
+        //           // Text('Pending Orders'),
+        //           // Text('Row 1'),
+        //           // Text('Row 2'),
+        //           Text(
+        //             'Order Id: 32524',
+        //             style: TextStyle(
+        //               color: Colors.black,
+        //               fontSize: 28,
+        //               fontWeight: FontWeight.w400,
+        //             ),
+        //           ),
+        //           Image(
+        //             image: AssetImage('images/order.jpg'),
+        //           ),
+        //         ],
+        //       ),
+        //       ListView(
+        //         children: <Text>[
+        //           Text('Approved Orders'),
+        //           Text('Row 1'),
+        //           Text('Row 2'),
+        //         ],
+        //       ),
+        //       ListView(
+        //         children: <Text>[
+        //           Text('Deployed Orders'),
+        //           Text('Row 1'),
+        //           Text('Row 2'),
+        //         ],
+        //       )
+        //     ],
+        //   ),
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-          child: TabBarView(
-            children: <ListView>[
-              ListView(
-                children: <Widget>[
-                  // Text('Vendor here'),
-                  // Text('Pending Orders'),
-                  // Text('Row 1'),
-                  // Text('Row 2'),
-                  Text(
-                    'Order Id: 32524',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w400,
+        body: SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  height: 250,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage('images/Logo.png'),
+                          fit: BoxFit.cover
+                      )
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomRight,
+                            colors: [
+                              Colors.black.withOpacity(.4),
+                              Colors.black.withOpacity(.2),
+                            ]
+                        )
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Text("Smart Shopping", style: TextStyle(color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),),
+                        SizedBox(height: 30,),
+                        Container(
+                          height: 50,
+                          margin: EdgeInsets.symmetric(horizontal: 40),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white
+                          ),
+                          child: Center(child: Text("Shopping Made Smart", style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold))),
+                        ),
+                        SizedBox(height: 30,),
+                      ],
                     ),
                   ),
-                  Image(
-                    image: AssetImage('images/order.jpg'),
-                  ),
-                ],
-              ),
-              ListView(
-                children: <Text>[
-                  Text('Approved Orders'),
-                  Text('Row 1'),
-                  Text('Row 2'),
-                ],
-              ),
-              ListView(
-                children: <Text>[
-                  Text('Deployed Orders'),
-                  Text('Row 1'),
-                  Text('Row 2'),
-                ],
-              )
-            ],
+                ),
+                SizedBox(height: 20,),
+              ],
+            ),
           ),
         ),
       ),
