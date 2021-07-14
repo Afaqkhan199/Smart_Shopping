@@ -50,9 +50,14 @@ void addTitlesandPrices(){
   }
 }
 
+String generateOrderID(){
+  var rng = new Random();
+  int rand = rng.nextInt(10000);
+  return(rand.toString());
+}
+
 
 class _cartState extends State<cart> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +94,7 @@ class _cartState extends State<cart> {
                               "TotalPrice" : price1,
                               "vendorEmail" : vendorEmails,
                               "customerEmail" : getEmail(),
-                              "OrderID" : "10032",
+                              "OrderID" : generateOrderID(),
                               "OrderTime" : DateTime.now(),
                               "VendorAddress" : "Shop G13, F10, Islamabad",
                               "CustomerAddress" : CustomerEmail,
