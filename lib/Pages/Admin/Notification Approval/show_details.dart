@@ -48,7 +48,6 @@ class _ShowDetailsState extends State<ShowDetails> {
       onTap: () {
         product = document;
         Navigator.pushNamed(context, NotificationDetails.id);
-        print("acha jee");
         data = document.data();
         //prodName = "${data['title']}";
         //Navigator.pop(context);

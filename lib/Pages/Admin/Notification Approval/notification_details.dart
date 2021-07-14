@@ -46,16 +46,17 @@ class _NotificationDetailsState extends State<NotificationDetails> {
               style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 0.5),
             ),
             Text("${data['vendorEmail']}"),
-            RoundButton(
-                title: "Send Notification",
-              onPressed: () {
-              print('notification sent');
-            },
-            ),
+           // RoundButton(
+           //     title: "Send Notification",
+           //   onPressed: () {
+            //  print('notification sent');
+          //  },
+         //   ),
             RoundButton(
               title: "Dismiss Notification",
               onPressed: () {
-                Navigator.pushNamed(context, HomePage.id);
+                Navigator.pop(context);
+                //Navigator.pushNamed(context, HomePage.id);
                 print("test");
               },
             ),
