@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Admin/admin_home.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Orders/vendor_orders.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
@@ -64,10 +65,10 @@ class VendorHome extends StatelessWidget {
               ),
               ListTile(
                 selectedTileColor: Colors.deepOrangeAccent,
-                title: Text('History/Reports'),
+                title: Text('Order History'),
                 onTap: () {
                   // Navigator.pop(context);
-                  Navigator.pushNamed(context, VendorHome.id);
+                  Navigator.pushNamed(context, VendorOrders.id);
                 },
               ),
               ListTile(

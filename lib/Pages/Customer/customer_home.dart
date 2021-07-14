@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_phone.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/settings.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Settings/vendor_settings.dart';
 import 'package:fyp_smart_shopping/Pages/show_product.dart';
 import 'package:fyp_smart_shopping/Pages/welcome_page.dart';
 import 'package:fyp_smart_shopping/Services/auth.dart';
@@ -117,7 +118,7 @@ class _CustomerHomeState extends State<CustomerHome> {
                 title: Text('Settings'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, CustomerSettings.id);
+                  Navigator.pushNamed(context, VendorSettings.id);
                 },
               ),
               ListTile(
@@ -217,6 +218,8 @@ class _CustomerHomeState extends State<CustomerHome> {
                 onPressed: () {
                   //ProductObjects.clear();
                   print(ProductObjects.length);
+                  for(int i=0;i<SearchKeywords.length;i++)
+                    print(SearchKeywords[i]);
                   if (SearchKeywords.isNotEmpty)
                     Navigator.pushNamed(context, SearchResults.id);
                 },

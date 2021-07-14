@@ -16,6 +16,7 @@ import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_led.dar
 import 'package:fyp_smart_shopping/Pages/Customer/Search/customer_search_charger.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/customer_rename.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/settings.dart';
+import 'package:fyp_smart_shopping/Pages/Vendor/Orders/vendor_orders.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_general.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_add_phone.dart';
 import 'package:fyp_smart_shopping/Pages/Vendor/Products/vendor_products.dart';
@@ -90,6 +91,8 @@ class SmartShopping extends StatelessWidget {
         AdminOrders.id: (context) => AdminOrders(),
         OrderDetails.id: (context) => OrderDetails(),
         AdminVendors.id: (context) => AdminVendors(),
+        VendorOrders.id:(context) => VendorOrders(),
+
       },
     );
   }
