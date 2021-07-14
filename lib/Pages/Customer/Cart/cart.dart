@@ -4,6 +4,7 @@ import 'package:fyp_smart_shopping/Pages/Customer/customer_home.dart';
 import 'package:fyp_smart_shopping/components/constants.dart';
 import 'package:fyp_smart_shopping/Pages/Customer/Cart/show_cart.dart';
 import 'package:fyp_smart_shopping/components/round_button.dart';
+import 'dart:math';
 
 class cart extends StatefulWidget {
   static const String id = 'cart';
@@ -12,12 +13,34 @@ class cart extends StatefulWidget {
 }
 
 void clearCart(){
+  FirebaseFirestore.instance
+      .collection('cart')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      if(doc.data()['customerEmail'] == getEmail())
+        doc.reference.delete();
+    });
+  });
+}
 
+void getCustomerAddress(){
+  FirebaseFirestore.instance
+      .collection('users')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      if(doc.data()['email']==getEmail()){
+        CustomerEmail = doc.data()['email'];
+      }
+    });
+  });
 }
 
 List<String> productTitles = [];
 List<String> productPrices = [];
 List<String> vendorEmails = [];
+String CustomerEmail = '';
 
 void addTitlesandPrices(){
   for(int i=0;i<documents.length;i++){
@@ -29,6 +52,7 @@ void addTitlesandPrices(){
 
 
 class _cartState extends State<cart> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +92,7 @@ class _cartState extends State<cart> {
                               "OrderID" : "10032",
                               "OrderTime" : DateTime.now(),
                               "VendorAddress" : "Shop G13, F10, Islamabad",
-                              "CustomerAddress" : "House 229B, F8/2, Islamabad",
+                              "CustomerAddress" : CustomerEmail,
                               "status" : "Placed",
                               "NoOfItems" : documents.length.toString(),
                           };
@@ -77,7 +101,11 @@ class _cartState extends State<cart> {
 
                           final snackBar = SnackBar(content: Text('Your order has been placed.'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          clearCart();
                           Navigator.of(context).pop();
+                          setState(() {
+
+                          });
                         },
                         child: Text('Yes'),
                       ),
